@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SatisServer.UI", "SatisServer.UI\SatisServer.UI.csproj", "{8020AF0F-D3D9-4E75-82C9-149A2ECB3C9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{2C87931E-3EF8-476A-AA6C-F621D61BA0F6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StylableWinFormsControls", "Dependencies\StylableWinFormsControls\StylableWinFormsControls.csproj", "{133A9B31-87B6-422F-8DA0-152F1C34B461}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsThemes", "Dependencies\WinFormsThemes\WinFormsThemes.csproj", "{9DF3DCA0-B770-4A1E-BA57-74F6059FE5DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8020AF0F-D3D9-4E75-82C9-149A2ECB3C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8020AF0F-D3D9-4E75-82C9-149A2ECB3C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8020AF0F-D3D9-4E75-82C9-149A2ECB3C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8020AF0F-D3D9-4E75-82C9-149A2ECB3C9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{133A9B31-87B6-422F-8DA0-152F1C34B461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{133A9B31-87B6-422F-8DA0-152F1C34B461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{133A9B31-87B6-422F-8DA0-152F1C34B461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{133A9B31-87B6-422F-8DA0-152F1C34B461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF3DCA0-B770-4A1E-BA57-74F6059FE5DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF3DCA0-B770-4A1E-BA57-74F6059FE5DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF3DCA0-B770-4A1E-BA57-74F6059FE5DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF3DCA0-B770-4A1E-BA57-74F6059FE5DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{133A9B31-87B6-422F-8DA0-152F1C34B461} = {2C87931E-3EF8-476A-AA6C-F621D61BA0F6}
+		{9DF3DCA0-B770-4A1E-BA57-74F6059FE5DD} = {2C87931E-3EF8-476A-AA6C-F621D61BA0F6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5EB04FF8-4137-4EA4-BFBF-496DBB783303}
+	EndGlobalSection
+EndGlobal
