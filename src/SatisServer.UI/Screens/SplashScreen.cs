@@ -1,5 +1,4 @@
-﻿
-namespace SatisServer.UI;
+﻿namespace SatisServer.UI.Screens;
 
 public partial class SplashScreen : Form
 {
@@ -7,7 +6,7 @@ public partial class SplashScreen : Form
 
     public SplashScreen()
     {
-        _timer.Interval = 5000;
+        _timer.Interval = 1000;
         InitializeComponent();
         _timer.Start();
         _timer.Tick += Timer_Tick;

@@ -9,7 +9,13 @@
     <ForceDesignerDPIUnaware>true</ForceDesignerDPIUnaware>
     <ApplicationHighDpiMode>DpiUnawareGdiScaled</ApplicationHighDpiMode>
     <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+    <StartupObject>SatisServer.UI.Program</StartupObject>
+    <ApplicationIcon>Resources\SatisIcon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\SatisIcon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dependencies\WinFormsThemes\WinFormsThemes.csproj" />

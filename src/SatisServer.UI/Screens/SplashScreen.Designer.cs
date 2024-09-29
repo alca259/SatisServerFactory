@@ -1,4 +1,4 @@
-﻿namespace SatisServer.UI;
+﻿namespace SatisServer.UI.Screens;
 
 partial class SplashScreen
 {

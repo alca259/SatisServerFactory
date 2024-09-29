@@ -1,3 +1,5 @@
+using SatisServer.UI.Screens;
+
 namespace SatisServer.UI;
 
 internal static class Program
@@ -20,6 +22,6 @@ internal static class Program
 
         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
-        Application.Run(new MainForm());
+        Application.Run(new MainScreen());
     }
 }
