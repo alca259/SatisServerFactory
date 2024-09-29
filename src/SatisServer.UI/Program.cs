@@ -12,7 +12,14 @@ internal static class Program
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
         StylableWinFormsControlsSettings.DEFAULT.ErrorHandling = ErrorHandling.Continue;
-        ThemeRegistryHolder.ThemeRegistry = ThemeRegistryHolder.GetBuilder().WithCurrentThemeSelector((selector) => ThemeRegistryHolder.ThemeRegistry!.GetTheme()).Build();
-        Application.Run(new Form1());
+
+        ThemeRegistryHolder.ThemeRegistry = ThemeRegistryHolder
+            .GetBuilder()
+            .WithCurrentThemeSelector((selector)
+                => ThemeRegistryHolder.ThemeRegistry!.GetTheme(ThemeCapabilities.DarkMode)).Build();
+
+        Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+
+        Application.Run(new MainForm());
     }
 }
