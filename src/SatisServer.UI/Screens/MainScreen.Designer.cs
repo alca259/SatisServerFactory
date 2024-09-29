@@ -510,7 +510,7 @@ partial class MainScreen
         tabPage4.Location = new Point(4, 25);
         tabPage4.Name = "tabPage4";
         tabPage4.Padding = new Padding(3);
-        tabPage4.Size = new Size(792, 421);
+        tabPage4.Size = new Size(192, 71);
         tabPage4.TabIndex = 3;
         tabPage4.Text = "Settings";
         tabPage4.UseVisualStyleBackColor = true;
@@ -695,7 +695,7 @@ partial class MainScreen
         Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "MainScreen";
         StartPosition = FormStartPosition.CenterScreen;
-        Text = "Form1";
+        Text = "Satisfactory Dedicated Server UI";
         stylableTabControl1.ResumeLayout(false);
         tabPage1.ResumeLayout(false);
         groupBox1.ResumeLayout(false);

@@ -1,4 +1,7 @@
+using Newtonsoft.Json;
 using SatisServer.UI.Data;
+using SatisServer.UI.Data.Endpoints.HealthCheck;
+using SatisServer.UI.Data.Enums;
 using SatisServer.UI.Logic;
 
 namespace SatisServer.UI.Screens;
@@ -10,6 +13,13 @@ public partial class MainScreen : Form
 
     public MainScreen()
     {
+        _timer = new()
+        {
+            Interval = 5000
+        };
+        _timer.Tick += Timer_Tick;
+        _timer.Start();
+
         Load += MainForm_Load;
         Hide();
         InitializeComponent();
@@ -17,16 +27,7 @@ public partial class MainScreen : Form
         LoadConfig();
         SetEvents();
         SetUI();
-
-        _timer = new()
-        {
-            Interval = 5000
-        };
-        _timer.Tick += Timer_Tick;
-        _timer.Start();
     }
-
-
 
     #region Event Handlers
     private void SetEvents()
@@ -66,8 +67,15 @@ public partial class MainScreen : Form
 
         Task.Factory.StartNew(async () =>
         {
-            var hc = await ServerControl.HealthCheck();
-            if (!hc)
+            string baseUrl = "https://localhost:7777/api/v1/"; // Replace with your server's address
+            string adminPassword = await File.ReadAllTextAsync("password.txt"); // Replace with your admin password
+
+            var apiClient = new DedicatedServerApiClient(baseUrl, true);
+
+            // Perform health check
+            var healthStatus = await apiClient.HealthCheck(new HealthCheckPayload());
+
+            if (healthStatus == null)
             {
                 Invoke(new Action(() =>
                 {
@@ -77,18 +85,23 @@ public partial class MainScreen : Form
                 return;
             }
 
-            var state = await ServerControl.QueryServerState();
+            // Authenticate
+            var authToken = await ApiFunctions.PasswordLogin(apiClient, PrivilegeLevel.Administrator, adminPassword);
 
+            // Set the authentication token for future requests
+            apiClient.SetAuthToken(authToken);
+
+            var state = await apiClient.GetServerState();
             Invoke(new Action(() =>
             {
-                ControlInfoStatus.Text = state.IsGameRunning ? "Started - Game running" : "Started - No session loaded";
-                ControlInfoPlayers.Text = $"{state.NumConnectedPlayers} / {state.PlayerLimit}";
+                ControlInfoStatus.Text = state.ServerGameState.IsGameRunning ? "Started - Game running" : "Started - No session loaded";
+                ControlInfoPlayers.Text = $"{state.ServerGameState.NumConnectedPlayers} / {state.ServerGameState.PlayerLimit}";
 
                 //StatusInfoLastWorldSave
 
                 StatusInfoCurrent.Text = ControlInfoStatus.Text;
                 StatusInfoPlayers.Text = ControlInfoPlayers.Text;
-                StatusInfoUptime.Text = $"{state.TotalGameDuration} secs";
+                StatusInfoUptime.Text = $"{state.ServerGameState.TotalGameDuration} secs";
             }));
         });
     }
