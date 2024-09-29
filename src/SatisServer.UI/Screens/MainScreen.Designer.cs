@@ -68,17 +68,16 @@ partial class MainScreen
         SettingsFolderLogsButtonOpen = new StylableButton();
         SettingsFolderLogsInfo = new StylableLabel();
         stylableLabel20 = new StylableLabel();
-        SettingsFolderLogsButtonSet = new StylableButton();
         panel4 = new Panel();
         SettingsFolderSavesButtonOpen = new StylableButton();
         SettingsFolderSavesInfo = new StylableLabel();
         stylableLabel18 = new StylableLabel();
-        SettingsFolderSavesButtonSet = new StylableButton();
         panel3 = new Panel();
         SettingsFolderSSButtonOpen = new StylableButton();
         SettingsFolderSSInfo = new StylableLabel();
         stylableLabel15 = new StylableLabel();
         SettingsFolderSSButtonSet = new StylableButton();
+        folderBrowserDialog1 = new FolderBrowserDialog();
         stylableTabControl1.SuspendLayout();
         tabPage1.SuspendLayout();
         groupBox1.SuspendLayout();
@@ -336,7 +335,7 @@ partial class MainScreen
         tabPage2.Location = new Point(4, 25);
         tabPage2.Name = "tabPage2";
         tabPage2.Padding = new Padding(3);
-        tabPage2.Size = new Size(792, 421);
+        tabPage2.Size = new Size(192, 71);
         tabPage2.TabIndex = 1;
         tabPage2.Text = "Stats";
         tabPage2.UseVisualStyleBackColor = true;
@@ -461,7 +460,7 @@ partial class MainScreen
         tabPage3.Location = new Point(4, 25);
         tabPage3.Name = "tabPage3";
         tabPage3.Padding = new Padding(3);
-        tabPage3.Size = new Size(792, 421);
+        tabPage3.Size = new Size(192, 71);
         tabPage3.TabIndex = 2;
         tabPage3.Text = "Log";
         tabPage3.UseVisualStyleBackColor = true;
@@ -533,7 +532,6 @@ partial class MainScreen
         panel5.Controls.Add(SettingsFolderLogsButtonOpen);
         panel5.Controls.Add(SettingsFolderLogsInfo);
         panel5.Controls.Add(stylableLabel20);
-        panel5.Controls.Add(SettingsFolderLogsButtonSet);
         panel5.Location = new Point(6, 110);
         panel5.Name = "panel5";
         panel5.Size = new Size(766, 38);
@@ -547,7 +545,7 @@ partial class MainScreen
         SettingsFolderLogsButtonOpen.EnabledBackColor = Color.White;
         SettingsFolderLogsButtonOpen.EnabledForeColor = Color.Black;
         SettingsFolderLogsButtonOpen.EnabledHoverColor = Color.LightGray;
-        SettingsFolderLogsButtonOpen.Location = new Point(154, 7);
+        SettingsFolderLogsButtonOpen.Location = new Point(111, 7);
         SettingsFolderLogsButtonOpen.Name = "SettingsFolderLogsButtonOpen";
         SettingsFolderLogsButtonOpen.Size = new Size(37, 23);
         SettingsFolderLogsButtonOpen.TabIndex = 3;
@@ -574,27 +572,11 @@ partial class MainScreen
         stylableLabel20.TabIndex = 0;
         stylableLabel20.Text = "Logs";
         // 
-        // SettingsFolderLogsButtonSet
-        // 
-        SettingsFolderLogsButtonSet.BorderColor = Color.Black;
-        SettingsFolderLogsButtonSet.DisabledBackColor = Color.Gray;
-        SettingsFolderLogsButtonSet.DisabledForeColor = Color.Black;
-        SettingsFolderLogsButtonSet.EnabledBackColor = Color.White;
-        SettingsFolderLogsButtonSet.EnabledForeColor = Color.Black;
-        SettingsFolderLogsButtonSet.EnabledHoverColor = Color.LightGray;
-        SettingsFolderLogsButtonSet.Location = new Point(111, 7);
-        SettingsFolderLogsButtonSet.Name = "SettingsFolderLogsButtonSet";
-        SettingsFolderLogsButtonSet.Size = new Size(37, 23);
-        SettingsFolderLogsButtonSet.TabIndex = 1;
-        SettingsFolderLogsButtonSet.Text = "Set";
-        SettingsFolderLogsButtonSet.UseVisualStyleBackColor = true;
-        // 
         // panel4
         // 
         panel4.Controls.Add(SettingsFolderSavesButtonOpen);
         panel4.Controls.Add(SettingsFolderSavesInfo);
         panel4.Controls.Add(stylableLabel18);
-        panel4.Controls.Add(SettingsFolderSavesButtonSet);
         panel4.Location = new Point(6, 66);
         panel4.Name = "panel4";
         panel4.Size = new Size(766, 38);
@@ -608,7 +590,7 @@ partial class MainScreen
         SettingsFolderSavesButtonOpen.EnabledBackColor = Color.White;
         SettingsFolderSavesButtonOpen.EnabledForeColor = Color.Black;
         SettingsFolderSavesButtonOpen.EnabledHoverColor = Color.LightGray;
-        SettingsFolderSavesButtonOpen.Location = new Point(154, 7);
+        SettingsFolderSavesButtonOpen.Location = new Point(111, 7);
         SettingsFolderSavesButtonOpen.Name = "SettingsFolderSavesButtonOpen";
         SettingsFolderSavesButtonOpen.Size = new Size(37, 23);
         SettingsFolderSavesButtonOpen.TabIndex = 3;
@@ -634,21 +616,6 @@ partial class MainScreen
         stylableLabel18.Size = new Size(36, 15);
         stylableLabel18.TabIndex = 0;
         stylableLabel18.Text = "Saves";
-        // 
-        // SettingsFolderSavesButtonSet
-        // 
-        SettingsFolderSavesButtonSet.BorderColor = Color.Black;
-        SettingsFolderSavesButtonSet.DisabledBackColor = Color.Gray;
-        SettingsFolderSavesButtonSet.DisabledForeColor = Color.Black;
-        SettingsFolderSavesButtonSet.EnabledBackColor = Color.White;
-        SettingsFolderSavesButtonSet.EnabledForeColor = Color.Black;
-        SettingsFolderSavesButtonSet.EnabledHoverColor = Color.LightGray;
-        SettingsFolderSavesButtonSet.Location = new Point(111, 7);
-        SettingsFolderSavesButtonSet.Name = "SettingsFolderSavesButtonSet";
-        SettingsFolderSavesButtonSet.Size = new Size(37, 23);
-        SettingsFolderSavesButtonSet.TabIndex = 1;
-        SettingsFolderSavesButtonSet.Text = "Set";
-        SettingsFolderSavesButtonSet.UseVisualStyleBackColor = true;
         // 
         // panel3
         // 
@@ -710,6 +677,14 @@ partial class MainScreen
         SettingsFolderSSButtonSet.TabIndex = 1;
         SettingsFolderSSButtonSet.Text = "Set";
         SettingsFolderSSButtonSet.UseVisualStyleBackColor = true;
+        // 
+        // folderBrowserDialog1
+        // 
+        folderBrowserDialog1.AddToRecent = false;
+        folderBrowserDialog1.Description = "Select folder root of SatisfactoryServerDedicated";
+        folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
+        folderBrowserDialog1.ShowNewFolderButton = false;
+        folderBrowserDialog1.UseDescriptionForTitle = true;
         // 
         // MainScreen
         // 
@@ -790,10 +765,9 @@ partial class MainScreen
     private StylableButton SettingsFolderLogsButtonOpen;
     private StylableLabel SettingsFolderLogsInfo;
     private StylableLabel stylableLabel20;
-    private StylableButton SettingsFolderLogsButtonSet;
     private Panel panel4;
     private StylableButton SettingsFolderSavesButtonOpen;
     private StylableLabel SettingsFolderSavesInfo;
     private StylableLabel stylableLabel18;
-    private StylableButton SettingsFolderSavesButtonSet;
+    private FolderBrowserDialog folderBrowserDialog1;
 }
