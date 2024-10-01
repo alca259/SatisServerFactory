@@ -3,6 +3,7 @@ using SatisServer.UI.Data;
 using SatisServer.UI.Data.Endpoints.HealthCheck;
 using SatisServer.UI.Data.Enums;
 using SatisServer.UI.Logic;
+using System.Text;
 
 namespace SatisServer.UI.Screens;
 
@@ -70,20 +71,7 @@ public partial class MainScreen : Form
 
     private void LogWatcherOnChanged(object sender, FileSystemEventArgs e)
     {
-        if (!File.Exists(e.FullPath)) return;
-        var logData = "";
-
-        using (StreamReader reader = new(new FileStream(e.FullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)))
-        {
-            logData = reader.ReadToEnd();
-            //logData = FilterFactoryLogs(logData)
-        }
-
-        Invoke(() =>
-        {
-            LogInfoShow.Text = logData;
-            LogInfoShow.ScrollToEnd();
-        });
+        UpdateServerLog(e.FullPath);
     }
 
     #endregion
@@ -98,10 +86,11 @@ public partial class MainScreen : Form
         ControlUseExperimental.CheckedChanged += (sender, e) => SetConfig();
         ControlDisableEventsSeasonal.CheckedChanged += (sender, e) => SetConfig();
         ControlServerPort.TextChanged += (sender, e) => SetConfig();
-
-        //LogComboFilter
-        //LogInfoShow
-
+        LogComboFilter.SelectedIndexChanged += (sender, e) =>
+        {
+            if (string.IsNullOrEmpty(SatisConfig.Instance.LogDirectory)) return;
+            UpdateServerLog(Path.Combine(SatisConfig.Instance.LogDirectory, "FactoryGame.log"));
+        };
         SettingsFolderSSButtonSet.Click += SettingsFolderSSButtonSet_Click;
         SettingsFolderSSButtonOpen.Click += (sender, e) => OpenPath(SatisConfig.Instance.RootPath);
         SettingsFolderLogsButtonOpen.Click += (sender, e) => OpenPath(SatisConfig.Instance.LogDirectory);
@@ -116,6 +105,14 @@ public partial class MainScreen : Form
         ControlServerPort.Text = SatisConfig.Instance.ServerPort.ToString();
         SetFolders();
         TriggerButtons();
+
+        LogComboFilter.Items.Clear();
+        foreach (var logEl in Enum.GetValues(typeof(FactoryLogPrefix)))
+        {
+            LogComboFilter.Items.Add(logEl);
+        }
+
+        LogComboFilter.SelectedIndex = 0;
     }
 
     private void TriggerButtons()
@@ -278,6 +275,50 @@ public partial class MainScreen : Form
         SettingsFolderSSInfo.Text = SatisConfig.Instance.RootPath;
         SettingsFolderLogsInfo.Text = SatisConfig.Instance.LogDirectory;
         SettingsFolderSavesInfo.Text = SatisConfig.Instance.SaveDirectory;
+    }
+
+    private void UpdateServerLog(string fullPath)
+    {
+        if (!File.Exists(fullPath)) return;
+        var logData = "";
+
+        using (StreamReader reader = new(new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)))
+        {
+            logData = reader.ReadToEnd();
+            logData = FilterFactoryLogs(logData);
+        }
+
+        Invoke(() =>
+        {
+            LogInfoShow.Text = logData;
+            LogInfoShow.ScrollToEnd();
+        });
+    }
+
+    private string FilterFactoryLogs(string logData)
+    {
+        FactoryLogPrefix factoryFilter = FactoryLogPrefix.All;
+        Invoke(() =>
+        {
+            if (LogComboFilter.SelectedItem is FactoryLogPrefix t)
+                factoryFilter = t;
+        });
+
+
+        if (factoryFilter == FactoryLogPrefix.All)
+        {
+            return logData;
+        }
+
+        var lines = logData.Split(Environment.NewLine);
+        var filterString = factoryFilter.ToString();
+        StringBuilder filteredLogs = new();
+        foreach (var line in lines.Where(l => l.Contains(filterString)))
+        {
+            filteredLogs.AppendLine(line);
+        }
+
+        return filteredLogs.ToString().Trim(Environment.NewLine.ToCharArray());
     }
     #endregion
 }
