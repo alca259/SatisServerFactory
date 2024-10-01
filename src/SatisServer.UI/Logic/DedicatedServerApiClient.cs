@@ -67,7 +67,7 @@ public sealed class DedicatedServerApiClient
                 throw new ApiException(apiResponse.ErrorCode, $"API Error: {apiResponse.ErrorMessage}");
             }
 
-            return apiResponse.Data;
+            return apiResponse.Data!;
         }
 
         return response.StatusCode switch
@@ -147,9 +147,9 @@ public sealed class DedicatedServerApiClient
             HandleApiError.HandleError(errorResponse);
         }
 
-        Console.WriteLine($"Response Status: {response.StatusCode}");
+        AppLog.Write($"Response Status: {response.StatusCode}");
         var responseContent = await response.Content.ReadAsStringAsync();
-        Console.WriteLine($"Response Content: {responseContent}");
+        AppLog.Write($"Response Content: {responseContent}");
 
         // Handle specific status codes
         switch (response.StatusCode)

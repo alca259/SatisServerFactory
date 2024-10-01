@@ -34,16 +34,14 @@ internal static class ServerControl
             WorkingDirectory = SatisConfig.Instance.RootPath,
             UseShellExecute = false,
             CreateNoWindow = true,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true
+            RedirectStandardOutput = false,
+            RedirectStandardError = false
         };
 
         var process = new Process { StartInfo = startInfo };
-        process.OutputDataReceived += (sender, args) => Console.WriteLine(args.Data);
         process.Start();
-        process.BeginOutputReadLine();
 
-        Console.WriteLine("Server started");
+        AppLog.Write("Server started");
     }
 
     /// <summary>Stops the server.</summary>
@@ -99,7 +97,7 @@ internal static class ServerControl
             }
         }
 
-        Console.WriteLine("Server stopped");
+        AppLog.Write("Server stopped");
     }
 
     /// <summary>Restarts the server.</summary>

@@ -5,6 +5,10 @@ public sealed class SatisConfig
 {
     /// <summary>Path to the root directory of the Dedicated Server</summary>
     public string? RootPath { get; set; }
+    /// <summary>Path to the log directory of the Dedicated Server</summary>
+    public string? LogDirectory { get; set; }
+    /// <summary>Path to the save directory of the Dedicated Server</summary>
+    public string? SaveDirectory { get; set; }
     /// <summary>IP address the Dedicated Server will be hosted on</summary>
     public string ServerIpAddress { get; set; } = "127.0.0.1";
     /// <summary>Port the Dedicated Server will be hosted on</summary>
@@ -50,6 +54,8 @@ public sealed class SatisConfig
         if (config == null) return;
 
         RootPath = config.RootPath;
+        LogDirectory = config.LogDirectory;
+        SaveDirectory = config.SaveDirectory;
         ServerIpAddress = config.ServerIpAddress;
         ServerPort = config.ServerPort;
         AdminPassword = config.AdminPassword;

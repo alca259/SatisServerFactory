@@ -22,12 +22,71 @@ public partial class MainScreen : Form
 
         Load += MainForm_Load;
         Hide();
+        LoadConfig();
         InitializeComponent();
         ShowSplashScreen();
-        LoadConfig();
         SetEvents();
         SetUI();
+        SetWatchers();
     }
+
+    #region Watchers
+    private FileSystemWatcher? _logWatcher;
+    private FileSystemWatcher? _saveWatcher;
+
+    private void SetWatchers()
+    {
+        if (!string.IsNullOrEmpty(SatisConfig.Instance.LogDirectory))
+        {
+            _logWatcher ??= new FileSystemWatcher();
+
+            _logWatcher.Path = SatisConfig.Instance.LogDirectory;
+            _logWatcher.Filter = "FactoryGame.log";
+            _logWatcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size;
+            _logWatcher.EnableRaisingEvents = true;
+            _logWatcher.Changed += LogWatcherOnChanged;
+        }
+
+        if (!string.IsNullOrEmpty(SatisConfig.Instance.SaveDirectory))
+        {
+            _saveWatcher ??= new FileSystemWatcher();
+
+            _saveWatcher.Path = SatisConfig.Instance.SaveDirectory;
+            _saveWatcher.Filter = "*.sav";
+            _saveWatcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size;
+            _saveWatcher.EnableRaisingEvents = true;
+            _saveWatcher.Changed += SaveWatcherOnChanged;
+        }
+    }
+
+    private void SaveWatcherOnChanged(object sender, FileSystemEventArgs e)
+    {
+        var humanDate = DateTime.Now.ToString("dd MMM yyyy HH:mm:ss tt");
+        Invoke(() =>
+        {
+            StatusInfoLastWorldSave.Text = humanDate;
+        });
+    }
+
+    private void LogWatcherOnChanged(object sender, FileSystemEventArgs e)
+    {
+        if (!File.Exists(e.FullPath)) return;
+        var logData = "";
+
+        using (StreamReader reader = new(new FileStream(e.FullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)))
+        {
+            logData = reader.ReadToEnd();
+            //logData = FilterFactoryLogs(logData)
+        }
+
+        Invoke(() =>
+        {
+            LogInfoShow.Text = logData;
+            LogInfoShow.ScrollToEnd();
+        });
+    }
+
+    #endregion
 
     #region Event Handlers
     private void SetEvents()
@@ -44,14 +103,25 @@ public partial class MainScreen : Form
         //LogInfoShow
 
         SettingsFolderSSButtonSet.Click += SettingsFolderSSButtonSet_Click;
-        SettingsFolderSSButtonOpen.Click += (sender, e) => OpenPath(SettingsFolderSSInfo.Text);
-        SettingsFolderLogsButtonOpen.Click += (sender, e) => OpenPath(SettingsFolderLogsInfo.Text);
-        SettingsFolderSavesButtonOpen.Click += (sender, e) => OpenPath(SettingsFolderSavesInfo.Text);
+        SettingsFolderSSButtonOpen.Click += (sender, e) => OpenPath(SatisConfig.Instance.RootPath);
+        SettingsFolderLogsButtonOpen.Click += (sender, e) => OpenPath(SatisConfig.Instance.LogDirectory);
+        SettingsFolderSavesButtonOpen.Click += (sender, e) => OpenPath(SatisConfig.Instance.SaveDirectory);
     }
 
     private void SetUI()
     {
+        ControlDisableEventsSeasonal.Checked = SatisConfig.Instance.DisableEventsSeasonal;
+        ControlNoVisibleConsole.Checked = SatisConfig.Instance.NoVisibleConsole;
+        ControlUseExperimental.Checked = SatisConfig.Instance.UseExperimental;
+        ControlServerPort.Text = SatisConfig.Instance.ServerPort.ToString();
+        SetFolders();
+        TriggerButtons();
+    }
+
+    private void TriggerButtons()
+    {
         bool isRunning = ServerControl.IsServerRunning();
+
         ControlButtonStart.Enabled = !isRunning;
         ControlButtonStop.Enabled = isRunning;
         ControlButtonRestart.Enabled = isRunning;
@@ -94,17 +164,41 @@ public partial class MainScreen : Form
                 ControlInfoStatus.Text = state.GetServerState();
                 ControlInfoPlayers.Text = state.GetPlayerCount();
 
-                StatusInfoLastWorldSave.Text = state.GetTickRate();
+                //StatusInfoLastWorldSave.Text = state.GetTickRate()
 
                 StatusInfoCurrent.Text = state.GetServerState();
-                StatusInfoPlayers.Text = state.GetServerState();
+                StatusInfoPlayers.Text = state.GetPlayerCount();
                 StatusInfoUptime.Text = state.GetSessionDuration();
             }));
         });
     }
-    private void ControlButtonStart_Click(object? sender, EventArgs e) => ServerControl.StartServer();
-    private void ControlButtonStop_Click(object? sender, EventArgs e) => ServerControl.StopServer();
-    private void ControlButtonRestart_Click(object? sender, EventArgs e) => ServerControl.RestartServer();
+
+    private void ControlButtonStart_Click(object? sender, EventArgs e)
+    {
+        ServerControl.StartServer();
+        TriggerButtons();
+    }
+
+    private void ControlButtonStop_Click(object? sender, EventArgs e)
+    {
+        ServerControl.StopServer();
+
+        ControlInfoStatus.Text = EmptyDir;
+        ControlInfoPlayers.Text = EmptyDir;
+        StatusInfoLastWorldSave.Text = EmptyDir;
+        StatusInfoCurrent.Text = EmptyDir;
+        StatusInfoPlayers.Text = EmptyDir;
+        StatusInfoUptime.Text = EmptyDir;
+        TriggerButtons();
+    }
+
+    private void ControlButtonRestart_Click(object? sender, EventArgs e)
+    {
+        TriggerButtons();
+        ServerControl.RestartServer();
+        TriggerButtons();
+    }
+
     private void SettingsFolderSSButtonSet_Click(object? sender, EventArgs e)
     {
         var result = folderBrowserDialog1.ShowDialog();
@@ -113,16 +207,20 @@ public partial class MainScreen : Form
             return;
         }
 
-        SettingsFolderSSInfo.Text = folderBrowserDialog1.SelectedPath;
+        var appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+        SatisConfig.Instance.RootPath = folderBrowserDialog1.SelectedPath;
+        SatisConfig.Instance.LogDirectory = Path.Combine(SatisConfig.Instance.RootPath, "FactoryGame", "Saved", "Logs");
+        SatisConfig.Instance.SaveDirectory = Path.Combine(appDataFolder, "FactoryGame", "Saved", "SaveGames", "server");
+
         SetConfig();
-        SetFolderSaveInfo();
-        SetFolderLogsInfo();
+        SetFolders();
+        SetWatchers();
     }
 
-
-    private void MainForm_Load(object? sender, EventArgs e) => ThemeRegistryHolder.ThemeRegistry!.GetTheme(ThemeCapabilities.DarkMode)?.Apply(this);
+    private void MainForm_Load(object? sender, EventArgs e)
+        => ThemeRegistryHolder.ThemeRegistry!.GetTheme(ThemeCapabilities.DarkMode)?.Apply(this);
     #endregion
-
 
     #region Helpers
     private void ShowSplashScreen()
@@ -132,7 +230,7 @@ public partial class MainScreen : Form
         Show();
     }
 
-    private static void OpenPath(string path)
+    private static void OpenPath(string? path)
     {
         if (Directory.Exists(path))
         {
@@ -149,7 +247,6 @@ public partial class MainScreen : Form
 
     private void SetConfig()
     {
-        SatisConfig.Instance.RootPath = SettingsFolderSSInfo.Text;
         SatisConfig.Instance.DisableEventsSeasonal = ControlDisableEventsSeasonal.Checked;
         SatisConfig.Instance.NoVisibleConsole = ControlNoVisibleConsole.Checked;
         SatisConfig.Instance.UseExperimental = ControlUseExperimental.Checked;
@@ -160,7 +257,7 @@ public partial class MainScreen : Form
         File.WriteAllText(Path.Combine(currentPath, "satisconfig.json"), satisConfig);
     }
 
-    private void LoadConfig()
+    private static void LoadConfig()
     {
         var instanceConfig = SatisConfig.Instance;
 
@@ -174,33 +271,13 @@ public partial class MainScreen : Form
         string satisConfig = File.ReadAllText(satisConfigPath);
         SatisConfig? config = JsonConvert.DeserializeObject<SatisConfig>(satisConfig);
         instanceConfig.CopyValues(config);
-
-        SettingsFolderSSInfo.Text = instanceConfig.RootPath;
-        ControlDisableEventsSeasonal.Checked = instanceConfig.DisableEventsSeasonal;
-        ControlNoVisibleConsole.Checked = instanceConfig.NoVisibleConsole;
-        ControlUseExperimental.Checked = instanceConfig.UseExperimental;
-        ControlServerPort.Text = instanceConfig.ServerPort.ToString();
-        SetFolderSaveInfo();
-        SetFolderLogsInfo();
     }
 
-    private void SetFolderSaveInfo()
+    private void SetFolders()
     {
-        var appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        var savesPath = Path.Combine(appDataFolder, "FactoryGame", "Saved", "SaveGames", "server");
-        SettingsFolderSavesInfo.Text = Directory.Exists(savesPath) ? savesPath : EmptyDir;
-    }
-
-    private void SetFolderLogsInfo()
-    {
-        if (SatisConfig.Instance.RootPath == null)
-        {
-            SettingsFolderLogsInfo.Text = EmptyDir;
-            return;
-        }
-
-        var logsPath = Path.Combine(SatisConfig.Instance.RootPath, "FactoryGame", "Saved", "Logs");
-        SettingsFolderLogsInfo.Text = Directory.Exists(logsPath) ? logsPath : EmptyDir;
+        SettingsFolderSSInfo.Text = SatisConfig.Instance.RootPath;
+        SettingsFolderLogsInfo.Text = SatisConfig.Instance.LogDirectory;
+        SettingsFolderSavesInfo.Text = SatisConfig.Instance.SaveDirectory;
     }
     #endregion
 }

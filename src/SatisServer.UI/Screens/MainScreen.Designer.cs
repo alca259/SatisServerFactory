@@ -127,6 +127,7 @@ partial class MainScreen
         // 
         // groupBox1
         // 
+        groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         groupBox1.Controls.Add(ControlInfoPlayers);
         groupBox1.Controls.Add(ControlInfoStatus);
         groupBox1.Controls.Add(stylableLabel12);
@@ -189,6 +190,7 @@ partial class MainScreen
         // 
         // panel1
         // 
+        panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         panel1.Controls.Add(stylableGroupBox2);
         panel1.Controls.Add(stylableGroupBox1);
         panel1.Location = new Point(8, 87);
@@ -258,6 +260,7 @@ partial class MainScreen
         // 
         // stylableGroupBox1
         // 
+        stylableGroupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         stylableGroupBox1.Controls.Add(ControlDisableEventsSeasonal);
         stylableGroupBox1.Controls.Add(ControlServerPort);
         stylableGroupBox1.Controls.Add(stylableLabel3);
@@ -335,13 +338,14 @@ partial class MainScreen
         tabPage2.Location = new Point(4, 25);
         tabPage2.Name = "tabPage2";
         tabPage2.Padding = new Padding(3);
-        tabPage2.Size = new Size(192, 71);
+        tabPage2.Size = new Size(792, 421);
         tabPage2.TabIndex = 1;
         tabPage2.Text = "Stats";
         tabPage2.UseVisualStyleBackColor = true;
         // 
         // tableLayoutPanel2
         // 
+        tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         tableLayoutPanel2.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
         tableLayoutPanel2.ColumnCount = 2;
         tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.54902F));
@@ -460,13 +464,14 @@ partial class MainScreen
         tabPage3.Location = new Point(4, 25);
         tabPage3.Name = "tabPage3";
         tabPage3.Padding = new Padding(3);
-        tabPage3.Size = new Size(192, 71);
+        tabPage3.Size = new Size(792, 421);
         tabPage3.TabIndex = 2;
         tabPage3.Text = "Log";
         tabPage3.UseVisualStyleBackColor = true;
         // 
         // LogInfoShow
         // 
+        LogInfoShow.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         LogInfoShow.BorderColor = Color.Blue;
         LogInfoShow.BorderStyle = BorderStyle.FixedSingle;
         LogInfoShow.DelayedTextChangedTimeout = 900;
@@ -510,13 +515,14 @@ partial class MainScreen
         tabPage4.Location = new Point(4, 25);
         tabPage4.Name = "tabPage4";
         tabPage4.Padding = new Padding(3);
-        tabPage4.Size = new Size(192, 71);
+        tabPage4.Size = new Size(792, 421);
         tabPage4.TabIndex = 3;
         tabPage4.Text = "Settings";
         tabPage4.UseVisualStyleBackColor = true;
         // 
         // groupBox2
         // 
+        groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         groupBox2.Controls.Add(panel5);
         groupBox2.Controls.Add(panel4);
         groupBox2.Controls.Add(panel3);
@@ -529,6 +535,7 @@ partial class MainScreen
         // 
         // panel5
         // 
+        panel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         panel5.Controls.Add(SettingsFolderLogsButtonOpen);
         panel5.Controls.Add(SettingsFolderLogsInfo);
         panel5.Controls.Add(stylableLabel20);
@@ -574,6 +581,7 @@ partial class MainScreen
         // 
         // panel4
         // 
+        panel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         panel4.Controls.Add(SettingsFolderSavesButtonOpen);
         panel4.Controls.Add(SettingsFolderSavesInfo);
         panel4.Controls.Add(stylableLabel18);
@@ -619,6 +627,7 @@ partial class MainScreen
         // 
         // panel3
         // 
+        panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         panel3.Controls.Add(SettingsFolderSSButtonOpen);
         panel3.Controls.Add(SettingsFolderSSInfo);
         panel3.Controls.Add(stylableLabel15);
@@ -693,6 +702,7 @@ partial class MainScreen
         ClientSize = new Size(800, 450);
         Controls.Add(stylableTabControl1);
         Icon = (Icon)resources.GetObject("$this.Icon");
+        MinimumSize = new Size(816, 489);
         Name = "MainScreen";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Satisfactory Dedicated Server UI";
