@@ -1,5 +1,6 @@
 ﻿namespace SatisServer.UI.Data.Enums;
 
+/// <summary>Function names for the API calls.</summary>
 public enum ApiCallName
 {
     HealthCheck,

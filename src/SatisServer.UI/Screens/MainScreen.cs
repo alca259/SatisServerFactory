@@ -67,10 +67,7 @@ public partial class MainScreen : Form
 
         Task.Factory.StartNew(async () =>
         {
-            string baseUrl = "https://localhost:7777/api/v1/"; // Replace with your server's address
-            string adminPassword = await File.ReadAllTextAsync("password.txt"); // Replace with your admin password
-
-            var apiClient = new DedicatedServerApiClient(baseUrl, true);
+            var apiClient = DedicatedServerApiClient.Instance;
 
             // Perform health check
             var healthStatus = await apiClient.HealthCheck(new HealthCheckPayload());
@@ -86,7 +83,7 @@ public partial class MainScreen : Form
             }
 
             // Authenticate
-            var authToken = await ApiFunctions.PasswordLogin(apiClient, PrivilegeLevel.Administrator, adminPassword);
+            var authToken = await ApiFunctions.PasswordLogin(apiClient, PrivilegeLevel.Administrator, SatisConfig.Instance.AdminPassword);
 
             // Set the authentication token for future requests
             apiClient.SetAuthToken(authToken);
@@ -94,14 +91,14 @@ public partial class MainScreen : Form
             var state = await apiClient.GetServerState();
             Invoke(new Action(() =>
             {
-                ControlInfoStatus.Text = state.ServerGameState.IsGameRunning ? "Started - Game running" : "Started - No session loaded";
-                ControlInfoPlayers.Text = $"{state.ServerGameState.NumConnectedPlayers} / {state.ServerGameState.PlayerLimit}";
+                ControlInfoStatus.Text = state.GetServerState();
+                ControlInfoPlayers.Text = state.GetPlayerCount();
 
-                //StatusInfoLastWorldSave
+                StatusInfoLastWorldSave.Text = state.GetTickRate();
 
-                StatusInfoCurrent.Text = ControlInfoStatus.Text;
-                StatusInfoPlayers.Text = ControlInfoPlayers.Text;
-                StatusInfoUptime.Text = $"{state.ServerGameState.TotalGameDuration} secs";
+                StatusInfoCurrent.Text = state.GetServerState();
+                StatusInfoPlayers.Text = state.GetServerState();
+                StatusInfoUptime.Text = state.GetSessionDuration();
             }));
         });
     }
@@ -175,18 +172,14 @@ public partial class MainScreen : Form
         }
 
         string satisConfig = File.ReadAllText(satisConfigPath);
-        SatisConfig config = JsonConvert.DeserializeObject<SatisConfig>(satisConfig) ?? new();
-        instanceConfig.NoVisibleConsole = config.NoVisibleConsole;
-        instanceConfig.UseExperimental = config.UseExperimental;
-        instanceConfig.DisableEventsSeasonal = config.DisableEventsSeasonal;
-        instanceConfig.ServerPort = config.ServerPort;
-        instanceConfig.RootPath = config.RootPath;
+        SatisConfig? config = JsonConvert.DeserializeObject<SatisConfig>(satisConfig);
+        instanceConfig.CopyValues(config);
 
-        SettingsFolderSSInfo.Text = config.RootPath;
-        ControlDisableEventsSeasonal.Checked = config.DisableEventsSeasonal;
-        ControlNoVisibleConsole.Checked = config.NoVisibleConsole;
-        ControlUseExperimental.Checked = config.UseExperimental;
-        ControlServerPort.Text = config.ServerPort.ToString();
+        SettingsFolderSSInfo.Text = instanceConfig.RootPath;
+        ControlDisableEventsSeasonal.Checked = instanceConfig.DisableEventsSeasonal;
+        ControlNoVisibleConsole.Checked = instanceConfig.NoVisibleConsole;
+        ControlUseExperimental.Checked = instanceConfig.UseExperimental;
+        ControlServerPort.Text = instanceConfig.ServerPort.ToString();
         SetFolderSaveInfo();
         SetFolderLogsInfo();
     }

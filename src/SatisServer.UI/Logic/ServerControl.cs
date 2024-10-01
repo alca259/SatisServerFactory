@@ -2,10 +2,13 @@
 
 namespace SatisServer.UI.Logic;
 
+/// <summary>Controls the dedicated server.</summary>
 internal static class ServerControl
 {
     private static readonly string[] _processNames = ["FactoryServer", "UnrealServer-Win64-Shipping", "FactoryServer-Win64-Shipping-Cmd"];
 
+    /// <summary>Starts the server.</summary>
+    /// <remarks>Does nothing if the server is already running.</remarks>
     public static void StartServer()
     {
         if (!SatisConfig.Instance.IsRootPathValid())
@@ -43,6 +46,8 @@ internal static class ServerControl
         Console.WriteLine("Server started");
     }
 
+    /// <summary>Stops the server.</summary>
+    /// <remarks>Does nothing if the server is not running.</remarks>
     public static void StopServer()
     {
         if (!IsServerRunning())
@@ -97,13 +102,14 @@ internal static class ServerControl
         Console.WriteLine("Server stopped");
     }
 
+    /// <summary>Restarts the server.</summary>
     public static void RestartServer()
     {
         StopServer();
         StartServer();
     }
 
-    // Checks if server is running
+    /// <summary>Checks if the server is running.</summary>
     public static bool IsServerRunning()
     {
         var processes = FindProcesses();
@@ -111,6 +117,7 @@ internal static class ServerControl
     }
 
     #region Helpers
+    /// <summary>Finds the server processes.</summary>
     private static Process[] FindProcesses()
     {
         List<Process> result = [];
