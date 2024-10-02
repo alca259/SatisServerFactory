@@ -10,8 +10,8 @@
     <ApplicationHighDpiMode>DpiUnawareGdiScaled</ApplicationHighDpiMode>
     <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
     <StartupObject>SatisServer.UI.Program</StartupObject>
-    <ApplicationIcon>Resources\SatisIcon.ico</ApplicationIcon>
     <NoWarn>IDE0290;S4830</NoWarn>
+    <ApplicationIcon>Resources\SatisIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

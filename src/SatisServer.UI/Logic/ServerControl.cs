@@ -6,6 +6,7 @@ namespace SatisServer.UI.Logic;
 internal static class ServerControl
 {
     private static readonly string[] _processNames = ["FactoryServer", "UnrealServer-Win64-Shipping", "FactoryServer-Win64-Shipping-Cmd"];
+    private static readonly List<nint> _hidedWindows = [];
 
     /// <summary>Starts the server.</summary>
     /// <remarks>Does nothing if the server is already running.</remarks>
@@ -42,6 +43,38 @@ internal static class ServerControl
         process.Start();
 
         AppLog.Write("Server started");
+
+        if (!SatisConfig.Instance.NoVisibleConsole) return;
+        
+        Thread.Sleep(1000);
+        HideServerConsole();
+    }
+
+    public static void ShowServerConsole()
+    {
+        var consoleProcess = FindProcesses();
+        foreach (var prWindow in consoleProcess)
+        {
+            CommandLineHelper.ShowWindowHandle(prWindow.MainWindowHandle);
+        }
+
+        foreach (var handle in _hidedWindows)
+        {
+            CommandLineHelper.ShowWindowHandle(handle);
+        }
+    }
+
+    public static void HideServerConsole()
+    {
+        var consoleProcess = FindProcesses();
+        foreach (var prWindow in consoleProcess)
+        {
+            if (!_hidedWindows.Contains(prWindow.MainWindowHandle))
+            {
+                _hidedWindows.Add(prWindow.MainWindowHandle);
+            }
+            CommandLineHelper.HideWindowHandle(prWindow.MainWindowHandle);
+        }
     }
 
     /// <summary>Stops the server.</summary>

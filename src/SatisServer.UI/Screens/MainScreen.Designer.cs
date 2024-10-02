@@ -338,7 +338,7 @@ partial class MainScreen
         tabPage2.Location = new Point(4, 25);
         tabPage2.Name = "tabPage2";
         tabPage2.Padding = new Padding(3);
-        tabPage2.Size = new Size(792, 421);
+        tabPage2.Size = new Size(192, 71);
         tabPage2.TabIndex = 1;
         tabPage2.Text = "Stats";
         tabPage2.UseVisualStyleBackColor = true;
@@ -365,16 +365,16 @@ partial class MainScreen
         tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
         tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
         tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        tableLayoutPanel2.Size = new Size(776, 104);
+        tableLayoutPanel2.Size = new Size(176, 104);
         tableLayoutPanel2.TabIndex = 1;
         // 
         // StatusInfoUptime
         // 
         StatusInfoUptime.DisabledForeColor = Color.Empty;
         StatusInfoUptime.Dock = DockStyle.Fill;
-        StatusInfoUptime.Location = new Point(102, 76);
+        StatusInfoUptime.Location = new Point(26, 76);
         StatusInfoUptime.Name = "StatusInfoUptime";
-        StatusInfoUptime.Size = new Size(670, 27);
+        StatusInfoUptime.Size = new Size(146, 27);
         StatusInfoUptime.TabIndex = 7;
         StatusInfoUptime.Text = "...";
         StatusInfoUptime.TextAlign = ContentAlignment.MiddleLeft;
@@ -385,7 +385,7 @@ partial class MainScreen
         stylableLabel10.Dock = DockStyle.Fill;
         stylableLabel10.Location = new Point(4, 76);
         stylableLabel10.Name = "stylableLabel10";
-        stylableLabel10.Size = new Size(91, 27);
+        stylableLabel10.Size = new Size(15, 27);
         stylableLabel10.TabIndex = 6;
         stylableLabel10.Text = "Uptime";
         stylableLabel10.TextAlign = ContentAlignment.MiddleCenter;
@@ -394,9 +394,9 @@ partial class MainScreen
         // 
         StatusInfoLastWorldSave.DisabledForeColor = Color.Empty;
         StatusInfoLastWorldSave.Dock = DockStyle.Fill;
-        StatusInfoLastWorldSave.Location = new Point(102, 51);
+        StatusInfoLastWorldSave.Location = new Point(26, 51);
         StatusInfoLastWorldSave.Name = "StatusInfoLastWorldSave";
-        StatusInfoLastWorldSave.Size = new Size(670, 24);
+        StatusInfoLastWorldSave.Size = new Size(146, 24);
         StatusInfoLastWorldSave.TabIndex = 5;
         StatusInfoLastWorldSave.Text = "...";
         StatusInfoLastWorldSave.TextAlign = ContentAlignment.MiddleLeft;
@@ -407,7 +407,7 @@ partial class MainScreen
         stylableLabel8.Dock = DockStyle.Fill;
         stylableLabel8.Location = new Point(4, 51);
         stylableLabel8.Name = "stylableLabel8";
-        stylableLabel8.Size = new Size(91, 24);
+        stylableLabel8.Size = new Size(15, 24);
         stylableLabel8.TabIndex = 4;
         stylableLabel8.Text = "Last world save";
         stylableLabel8.TextAlign = ContentAlignment.MiddleCenter;
@@ -416,9 +416,9 @@ partial class MainScreen
         // 
         StatusInfoPlayers.DisabledForeColor = Color.Empty;
         StatusInfoPlayers.Dock = DockStyle.Fill;
-        StatusInfoPlayers.Location = new Point(102, 26);
+        StatusInfoPlayers.Location = new Point(26, 26);
         StatusInfoPlayers.Name = "StatusInfoPlayers";
-        StatusInfoPlayers.Size = new Size(670, 24);
+        StatusInfoPlayers.Size = new Size(146, 24);
         StatusInfoPlayers.TabIndex = 3;
         StatusInfoPlayers.Text = "...";
         StatusInfoPlayers.TextAlign = ContentAlignment.MiddleLeft;
@@ -427,9 +427,9 @@ partial class MainScreen
         // 
         StatusInfoCurrent.DisabledForeColor = Color.Empty;
         StatusInfoCurrent.Dock = DockStyle.Fill;
-        StatusInfoCurrent.Location = new Point(102, 1);
+        StatusInfoCurrent.Location = new Point(26, 1);
         StatusInfoCurrent.Name = "StatusInfoCurrent";
-        StatusInfoCurrent.Size = new Size(670, 24);
+        StatusInfoCurrent.Size = new Size(146, 24);
         StatusInfoCurrent.TabIndex = 2;
         StatusInfoCurrent.Text = "...";
         StatusInfoCurrent.TextAlign = ContentAlignment.MiddleLeft;
@@ -440,7 +440,7 @@ partial class MainScreen
         stylableLabel4.Dock = DockStyle.Fill;
         stylableLabel4.Location = new Point(4, 1);
         stylableLabel4.Name = "stylableLabel4";
-        stylableLabel4.Size = new Size(91, 24);
+        stylableLabel4.Size = new Size(15, 24);
         stylableLabel4.TabIndex = 0;
         stylableLabel4.Text = "Status";
         stylableLabel4.TextAlign = ContentAlignment.MiddleCenter;
@@ -451,7 +451,7 @@ partial class MainScreen
         stylableLabel5.Dock = DockStyle.Fill;
         stylableLabel5.Location = new Point(4, 26);
         stylableLabel5.Name = "stylableLabel5";
-        stylableLabel5.Size = new Size(91, 24);
+        stylableLabel5.Size = new Size(15, 24);
         stylableLabel5.TabIndex = 1;
         stylableLabel5.Text = "Players";
         stylableLabel5.TextAlign = ContentAlignment.MiddleCenter;
@@ -464,7 +464,7 @@ partial class MainScreen
         tabPage3.Location = new Point(4, 25);
         tabPage3.Name = "tabPage3";
         tabPage3.Padding = new Padding(3);
-        tabPage3.Size = new Size(792, 421);
+        tabPage3.Size = new Size(192, 71);
         tabPage3.TabIndex = 2;
         tabPage3.Text = "Log";
         tabPage3.UseVisualStyleBackColor = true;
@@ -482,7 +482,7 @@ partial class MainScreen
         LogInfoShow.PlaceholderForeColor = Color.Gray;
         LogInfoShow.ReadOnly = true;
         LogInfoShow.ScrollBars = ScrollBars.Both;
-        LogInfoShow.Size = new Size(770, 367);
+        LogInfoShow.Size = new Size(170, 17);
         LogInfoShow.TabIndex = 2;
         LogInfoShow.TabStop = false;
         // 
@@ -515,7 +515,7 @@ partial class MainScreen
         tabPage4.Location = new Point(4, 25);
         tabPage4.Name = "tabPage4";
         tabPage4.Padding = new Padding(3);
-        tabPage4.Size = new Size(792, 421);
+        tabPage4.Size = new Size(192, 71);
         tabPage4.TabIndex = 3;
         tabPage4.Text = "Settings";
         tabPage4.UseVisualStyleBackColor = true;
@@ -528,7 +528,7 @@ partial class MainScreen
         groupBox2.Controls.Add(panel3);
         groupBox2.Location = new Point(6, 6);
         groupBox2.Name = "groupBox2";
-        groupBox2.Size = new Size(778, 158);
+        groupBox2.Size = new Size(178, 158);
         groupBox2.TabIndex = 0;
         groupBox2.TabStop = false;
         groupBox2.Text = "Folders";
@@ -541,7 +541,7 @@ partial class MainScreen
         panel5.Controls.Add(stylableLabel20);
         panel5.Location = new Point(6, 110);
         panel5.Name = "panel5";
-        panel5.Size = new Size(766, 38);
+        panel5.Size = new Size(166, 38);
         panel5.TabIndex = 5;
         // 
         // SettingsFolderLogsButtonOpen
@@ -587,7 +587,7 @@ partial class MainScreen
         panel4.Controls.Add(stylableLabel18);
         panel4.Location = new Point(6, 66);
         panel4.Name = "panel4";
-        panel4.Size = new Size(766, 38);
+        panel4.Size = new Size(166, 38);
         panel4.TabIndex = 4;
         // 
         // SettingsFolderSavesButtonOpen
@@ -634,7 +634,7 @@ partial class MainScreen
         panel3.Controls.Add(SettingsFolderSSButtonSet);
         panel3.Location = new Point(6, 22);
         panel3.Name = "panel3";
-        panel3.Size = new Size(766, 38);
+        panel3.Size = new Size(166, 38);
         panel3.TabIndex = 3;
         // 
         // SettingsFolderSSButtonOpen

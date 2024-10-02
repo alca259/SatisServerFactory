@@ -82,7 +82,18 @@ public partial class MainScreen : Form
         ControlButtonStart.Click += ControlButtonStart_Click;
         ControlButtonStop.Click += ControlButtonStop_Click;
         ControlButtonRestart.Click += ControlButtonRestart_Click;
-        ControlNoVisibleConsole.CheckedChanged += (sender, e) => SetConfig();
+        ControlNoVisibleConsole.CheckedChanged += (sender, e) =>
+        {
+            SetConfig();
+            if (SatisConfig.Instance.NoVisibleConsole)
+            {
+                ServerControl.HideServerConsole();
+            }
+            else
+            {
+                ServerControl.ShowServerConsole();
+            }
+        };
         ControlUseExperimental.CheckedChanged += (sender, e) => SetConfig();
         ControlDisableEventsSeasonal.CheckedChanged += (sender, e) => SetConfig();
         ControlServerPort.TextChanged += (sender, e) => SetConfig();
@@ -115,6 +126,16 @@ public partial class MainScreen : Form
         LogComboFilter.SelectedIndex = 0;
     }
 
+    private void ClearTextUI()
+    {
+        ControlInfoStatus.Text = EmptyDir;
+        ControlInfoPlayers.Text = EmptyDir;
+        StatusInfoLastWorldSave.Text = EmptyDir;
+        StatusInfoCurrent.Text = EmptyDir;
+        StatusInfoPlayers.Text = EmptyDir;
+        StatusInfoUptime.Text = EmptyDir;
+    }
+
     private void TriggerButtons()
     {
         bool isRunning = ServerControl.IsServerRunning();
@@ -122,7 +143,6 @@ public partial class MainScreen : Form
         ControlButtonStart.Enabled = !isRunning;
         ControlButtonStop.Enabled = isRunning;
         ControlButtonRestart.Enabled = isRunning;
-        ControlNoVisibleConsole.Enabled = !isRunning;
         ControlUseExperimental.Enabled = !isRunning;
         ControlDisableEventsSeasonal.Enabled = !isRunning;
         ControlServerPort.Enabled = !isRunning;
@@ -172,6 +192,7 @@ public partial class MainScreen : Form
 
     private void ControlButtonStart_Click(object? sender, EventArgs e)
     {
+        ClearTextUI();
         ServerControl.StartServer();
         TriggerButtons();
     }
@@ -179,19 +200,14 @@ public partial class MainScreen : Form
     private void ControlButtonStop_Click(object? sender, EventArgs e)
     {
         ServerControl.StopServer();
-
-        ControlInfoStatus.Text = EmptyDir;
-        ControlInfoPlayers.Text = EmptyDir;
-        StatusInfoLastWorldSave.Text = EmptyDir;
-        StatusInfoCurrent.Text = EmptyDir;
-        StatusInfoPlayers.Text = EmptyDir;
-        StatusInfoUptime.Text = EmptyDir;
+        ClearTextUI();
         TriggerButtons();
     }
 
     private void ControlButtonRestart_Click(object? sender, EventArgs e)
     {
         TriggerButtons();
+        ClearTextUI();
         ServerControl.RestartServer();
         TriggerButtons();
     }
