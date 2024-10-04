@@ -10,6 +10,7 @@ internal static class ServerControl
 
     internal static event EventHandler? OnServerStarted;
     internal static event EventHandler? OnServerStopped;
+    internal static event EventHandler? OnDetectServerOnline;
 
     /// <summary>Starts the server.</summary>
     /// <remarks>Does nothing if the server is already running.</remarks>
@@ -165,7 +166,61 @@ internal static class ServerControl
     public static bool IsServerRunning()
     {
         var processes = FindProcesses();
-        return processes.Length > 0;
+        bool isRunning = processes.Length > 0;
+        if (isRunning)
+        {
+            OnDetectServerOnline?.Invoke(null, EventArgs.Empty);
+        }
+
+        return isRunning;
+    }
+
+    /// <summary>Gets the server RAM usage.</summary>
+    public static void GetRamUsage(out double ramUsage)
+    {
+        ramUsage = 0;
+
+        if (!IsServerRunning())
+            return;
+
+        var process = FindProcesses().OrderByDescending(o => o.PrivateMemorySize64).FirstOrDefault();
+        if (process == null)
+            return;
+
+        ramUsage = process.WorkingSet64 / 1024.0 / 1024.0;
+    }
+
+    private static DateTime? _lastTime;
+    private static TimeSpan _lastTotalProcessorTime;
+    /// <summary>Gets the server CPU percentage.</summary>
+    public static void GetCpuPercentage(out double cpuUsage)
+    {
+        cpuUsage = 0;
+
+        if (!IsServerRunning())
+            return;
+
+        var process = FindProcesses().OrderByDescending(o => o.TotalProcessorTime).FirstOrDefault();
+        if (process == null)
+            return;
+
+        if (_lastTime == null)
+        {
+            _lastTime = DateTime.UtcNow;
+            _lastTotalProcessorTime = process.TotalProcessorTime;
+        }
+        else
+        {
+            var curTime = DateTime.UtcNow;
+            var curTotalProcessorTime = process.TotalProcessorTime;
+
+            double CPUUsage = (curTotalProcessorTime.TotalMilliseconds - _lastTotalProcessorTime.TotalMilliseconds)
+                / curTime.Subtract(_lastTime.Value).TotalMilliseconds / Convert.ToDouble(Environment.ProcessorCount);
+            cpuUsage = CPUUsage * 100;
+
+            _lastTime = curTime;
+            _lastTotalProcessorTime = curTotalProcessorTime;
+        }
     }
 
     #region Helpers
