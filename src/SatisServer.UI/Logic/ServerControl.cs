@@ -8,6 +8,9 @@ internal static class ServerControl
     private static readonly string[] _processNames = ["FactoryServer", "UnrealServer-Win64-Shipping", "FactoryServer-Win64-Shipping-Cmd"];
     private static readonly List<nint> _hidedWindows = [];
 
+    internal static event EventHandler? OnServerStarted;
+    internal static event EventHandler? OnServerStopped;
+
     /// <summary>Starts the server.</summary>
     /// <remarks>Does nothing if the server is already running.</remarks>
     public static void StartServer()
@@ -25,6 +28,7 @@ internal static class ServerControl
 
         if (IsServerRunning())
         {
+            OnServerStarted?.Invoke(null, EventArgs.Empty);
             return;
         }
 
@@ -43,10 +47,25 @@ internal static class ServerControl
         process.Start();
 
         AppLog.Write("Server started");
+        OnServerStarted?.Invoke(null, EventArgs.Empty);
 
         if (!SatisConfig.Instance.NoVisibleConsole) return;
         
-        Thread.Sleep(1000);
+        var processes = FindProcesses()
+            .Where(w => w.MainWindowHandle == IntPtr.Zero)
+            .Where(w => w.Id != process.Id)
+            .ToArray();
+
+        while (processes.Length > 0)
+        {
+            AppLog.Write("Waiting for server console to hide", AppLog.LogLevel.Debug);
+            Thread.Sleep(1000);
+            processes = FindProcesses()
+                .Where(w => w.MainWindowHandle == IntPtr.Zero)
+                .Where(w => w.Id != process.Id)
+                .ToArray();
+        }
+
         HideServerConsole();
     }
 
@@ -83,6 +102,7 @@ internal static class ServerControl
     {
         if (!IsServerRunning())
         {
+            OnServerStopped?.Invoke(null, EventArgs.Empty);
             return;
         }
 
@@ -131,6 +151,7 @@ internal static class ServerControl
         }
 
         AppLog.Write("Server stopped");
+        OnServerStopped?.Invoke(null, EventArgs.Empty);
     }
 
     /// <summary>Restarts the server.</summary>
@@ -158,6 +179,19 @@ internal static class ServerControl
         }
 
         return [.. result];
+    }
+
+    internal static string GetServerOnlineDuration()
+    {
+        if (!IsServerRunning())
+            return "0 seconds";
+
+        var process = FindProcesses().FirstOrDefault();
+        if (process == null)
+            return "0 seconds";
+
+        var time = DateTime.UtcNow - process.StartTime.ToUniversalTime();
+        return $"{time.Days} days, {time.Hours} hours, {time.Minutes} minutes, {time.Seconds} seconds";
     }
     #endregion
 }

@@ -78,6 +78,20 @@ partial class MainScreen
         stylableLabel15 = new StylableLabel();
         SettingsFolderSSButtonSet = new StylableButton();
         folderBrowserDialog1 = new FolderBrowserDialog();
+        stylableLabel1 = new StylableLabel();
+        StatusInfoTotalGameDuration = new StylableLabel();
+        stylableLabel6 = new StylableLabel();
+        StatusInfoTickRate = new StylableLabel();
+        stylableLabel9 = new StylableLabel();
+        StatusInfoIsPaused = new StylableLabel();
+        stylableLabel16 = new StylableLabel();
+        StatusInfoTechTier = new StylableLabel();
+        stylableLabel19 = new StylableLabel();
+        StatusInfoActiveSchematic = new StylableLabel();
+        stylableLabel22 = new StylableLabel();
+        StatusInfoGamePhase = new StylableLabel();
+        stylableLabel24 = new StylableLabel();
+        StatusInfoAutoLoadSessionName = new StylableLabel();
         stylableTabControl1.SuspendLayout();
         tabPage1.SuspendLayout();
         groupBox1.SuspendLayout();
@@ -338,7 +352,7 @@ partial class MainScreen
         tabPage2.Location = new Point(4, 25);
         tabPage2.Name = "tabPage2";
         tabPage2.Padding = new Padding(3);
-        tabPage2.Size = new Size(192, 71);
+        tabPage2.Size = new Size(792, 421);
         tabPage2.TabIndex = 1;
         tabPage2.Text = "Stats";
         tabPage2.UseVisualStyleBackColor = true;
@@ -350,6 +364,20 @@ partial class MainScreen
         tableLayoutPanel2.ColumnCount = 2;
         tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.54902F));
         tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.45098F));
+        tableLayoutPanel2.Controls.Add(StatusInfoAutoLoadSessionName, 1, 10);
+        tableLayoutPanel2.Controls.Add(stylableLabel24, 0, 10);
+        tableLayoutPanel2.Controls.Add(StatusInfoGamePhase, 1, 9);
+        tableLayoutPanel2.Controls.Add(stylableLabel22, 0, 9);
+        tableLayoutPanel2.Controls.Add(StatusInfoActiveSchematic, 1, 8);
+        tableLayoutPanel2.Controls.Add(stylableLabel19, 0, 8);
+        tableLayoutPanel2.Controls.Add(StatusInfoTechTier, 1, 7);
+        tableLayoutPanel2.Controls.Add(stylableLabel16, 0, 7);
+        tableLayoutPanel2.Controls.Add(StatusInfoIsPaused, 1, 6);
+        tableLayoutPanel2.Controls.Add(stylableLabel9, 0, 6);
+        tableLayoutPanel2.Controls.Add(StatusInfoTickRate, 1, 5);
+        tableLayoutPanel2.Controls.Add(stylableLabel6, 0, 5);
+        tableLayoutPanel2.Controls.Add(StatusInfoTotalGameDuration, 1, 4);
+        tableLayoutPanel2.Controls.Add(stylableLabel1, 0, 4);
         tableLayoutPanel2.Controls.Add(StatusInfoUptime, 1, 3);
         tableLayoutPanel2.Controls.Add(stylableLabel10, 0, 3);
         tableLayoutPanel2.Controls.Add(StatusInfoLastWorldSave, 1, 2);
@@ -360,21 +388,28 @@ partial class MainScreen
         tableLayoutPanel2.Controls.Add(stylableLabel5, 0, 1);
         tableLayoutPanel2.Location = new Point(6, 6);
         tableLayoutPanel2.Name = "tableLayoutPanel2";
-        tableLayoutPanel2.RowCount = 4;
-        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-        tableLayoutPanel2.Size = new Size(176, 104);
+        tableLayoutPanel2.RowCount = 11;
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
+        tableLayoutPanel2.Size = new Size(776, 407);
         tableLayoutPanel2.TabIndex = 1;
         // 
         // StatusInfoUptime
         // 
         StatusInfoUptime.DisabledForeColor = Color.Empty;
         StatusInfoUptime.Dock = DockStyle.Fill;
-        StatusInfoUptime.Location = new Point(26, 76);
+        StatusInfoUptime.Location = new Point(102, 109);
         StatusInfoUptime.Name = "StatusInfoUptime";
-        StatusInfoUptime.Size = new Size(146, 27);
+        StatusInfoUptime.Size = new Size(670, 35);
         StatusInfoUptime.TabIndex = 7;
         StatusInfoUptime.Text = "...";
         StatusInfoUptime.TextAlign = ContentAlignment.MiddleLeft;
@@ -383,9 +418,9 @@ partial class MainScreen
         // 
         stylableLabel10.DisabledForeColor = Color.Empty;
         stylableLabel10.Dock = DockStyle.Fill;
-        stylableLabel10.Location = new Point(4, 76);
+        stylableLabel10.Location = new Point(4, 109);
         stylableLabel10.Name = "stylableLabel10";
-        stylableLabel10.Size = new Size(15, 27);
+        stylableLabel10.Size = new Size(91, 35);
         stylableLabel10.TabIndex = 6;
         stylableLabel10.Text = "Uptime";
         stylableLabel10.TextAlign = ContentAlignment.MiddleCenter;
@@ -394,9 +429,9 @@ partial class MainScreen
         // 
         StatusInfoLastWorldSave.DisabledForeColor = Color.Empty;
         StatusInfoLastWorldSave.Dock = DockStyle.Fill;
-        StatusInfoLastWorldSave.Location = new Point(26, 51);
+        StatusInfoLastWorldSave.Location = new Point(102, 73);
         StatusInfoLastWorldSave.Name = "StatusInfoLastWorldSave";
-        StatusInfoLastWorldSave.Size = new Size(146, 24);
+        StatusInfoLastWorldSave.Size = new Size(670, 35);
         StatusInfoLastWorldSave.TabIndex = 5;
         StatusInfoLastWorldSave.Text = "...";
         StatusInfoLastWorldSave.TextAlign = ContentAlignment.MiddleLeft;
@@ -405,9 +440,9 @@ partial class MainScreen
         // 
         stylableLabel8.DisabledForeColor = Color.Empty;
         stylableLabel8.Dock = DockStyle.Fill;
-        stylableLabel8.Location = new Point(4, 51);
+        stylableLabel8.Location = new Point(4, 73);
         stylableLabel8.Name = "stylableLabel8";
-        stylableLabel8.Size = new Size(15, 24);
+        stylableLabel8.Size = new Size(91, 35);
         stylableLabel8.TabIndex = 4;
         stylableLabel8.Text = "Last world save";
         stylableLabel8.TextAlign = ContentAlignment.MiddleCenter;
@@ -416,9 +451,9 @@ partial class MainScreen
         // 
         StatusInfoPlayers.DisabledForeColor = Color.Empty;
         StatusInfoPlayers.Dock = DockStyle.Fill;
-        StatusInfoPlayers.Location = new Point(26, 26);
+        StatusInfoPlayers.Location = new Point(102, 37);
         StatusInfoPlayers.Name = "StatusInfoPlayers";
-        StatusInfoPlayers.Size = new Size(146, 24);
+        StatusInfoPlayers.Size = new Size(670, 35);
         StatusInfoPlayers.TabIndex = 3;
         StatusInfoPlayers.Text = "...";
         StatusInfoPlayers.TextAlign = ContentAlignment.MiddleLeft;
@@ -427,9 +462,9 @@ partial class MainScreen
         // 
         StatusInfoCurrent.DisabledForeColor = Color.Empty;
         StatusInfoCurrent.Dock = DockStyle.Fill;
-        StatusInfoCurrent.Location = new Point(26, 1);
+        StatusInfoCurrent.Location = new Point(102, 1);
         StatusInfoCurrent.Name = "StatusInfoCurrent";
-        StatusInfoCurrent.Size = new Size(146, 24);
+        StatusInfoCurrent.Size = new Size(670, 35);
         StatusInfoCurrent.TabIndex = 2;
         StatusInfoCurrent.Text = "...";
         StatusInfoCurrent.TextAlign = ContentAlignment.MiddleLeft;
@@ -440,7 +475,7 @@ partial class MainScreen
         stylableLabel4.Dock = DockStyle.Fill;
         stylableLabel4.Location = new Point(4, 1);
         stylableLabel4.Name = "stylableLabel4";
-        stylableLabel4.Size = new Size(15, 24);
+        stylableLabel4.Size = new Size(91, 35);
         stylableLabel4.TabIndex = 0;
         stylableLabel4.Text = "Status";
         stylableLabel4.TextAlign = ContentAlignment.MiddleCenter;
@@ -449,9 +484,9 @@ partial class MainScreen
         // 
         stylableLabel5.DisabledForeColor = Color.Empty;
         stylableLabel5.Dock = DockStyle.Fill;
-        stylableLabel5.Location = new Point(4, 26);
+        stylableLabel5.Location = new Point(4, 37);
         stylableLabel5.Name = "stylableLabel5";
-        stylableLabel5.Size = new Size(15, 24);
+        stylableLabel5.Size = new Size(91, 35);
         stylableLabel5.TabIndex = 1;
         stylableLabel5.Text = "Players";
         stylableLabel5.TextAlign = ContentAlignment.MiddleCenter;
@@ -695,6 +730,160 @@ partial class MainScreen
         folderBrowserDialog1.ShowNewFolderButton = false;
         folderBrowserDialog1.UseDescriptionForTitle = true;
         // 
+        // stylableLabel1
+        // 
+        stylableLabel1.DisabledForeColor = Color.Empty;
+        stylableLabel1.Dock = DockStyle.Fill;
+        stylableLabel1.Location = new Point(4, 145);
+        stylableLabel1.Name = "stylableLabel1";
+        stylableLabel1.Size = new Size(91, 35);
+        stylableLabel1.TabIndex = 8;
+        stylableLabel1.Text = "Total session time";
+        stylableLabel1.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // StatusInfoTotalGameDuration
+        // 
+        StatusInfoTotalGameDuration.DisabledForeColor = Color.Empty;
+        StatusInfoTotalGameDuration.Dock = DockStyle.Fill;
+        StatusInfoTotalGameDuration.Location = new Point(102, 145);
+        StatusInfoTotalGameDuration.Name = "StatusInfoTotalGameDuration";
+        StatusInfoTotalGameDuration.Size = new Size(670, 35);
+        StatusInfoTotalGameDuration.TabIndex = 9;
+        StatusInfoTotalGameDuration.Text = "...";
+        StatusInfoTotalGameDuration.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // stylableLabel6
+        // 
+        stylableLabel6.DisabledForeColor = Color.Empty;
+        stylableLabel6.Dock = DockStyle.Fill;
+        stylableLabel6.Location = new Point(4, 181);
+        stylableLabel6.Name = "stylableLabel6";
+        stylableLabel6.Size = new Size(91, 35);
+        stylableLabel6.TabIndex = 10;
+        stylableLabel6.Text = "Tick rate";
+        stylableLabel6.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // StatusInfoTickRate
+        // 
+        StatusInfoTickRate.DisabledForeColor = Color.Empty;
+        StatusInfoTickRate.Dock = DockStyle.Fill;
+        StatusInfoTickRate.Location = new Point(102, 181);
+        StatusInfoTickRate.Name = "StatusInfoTickRate";
+        StatusInfoTickRate.Size = new Size(670, 35);
+        StatusInfoTickRate.TabIndex = 11;
+        StatusInfoTickRate.Text = "...";
+        StatusInfoTickRate.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // stylableLabel9
+        // 
+        stylableLabel9.DisabledForeColor = Color.Empty;
+        stylableLabel9.Dock = DockStyle.Fill;
+        stylableLabel9.Location = new Point(4, 217);
+        stylableLabel9.Name = "stylableLabel9";
+        stylableLabel9.Size = new Size(91, 35);
+        stylableLabel9.TabIndex = 12;
+        stylableLabel9.Text = "Is paused?";
+        stylableLabel9.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // StatusInfoIsPaused
+        // 
+        StatusInfoIsPaused.DisabledForeColor = Color.Empty;
+        StatusInfoIsPaused.Dock = DockStyle.Fill;
+        StatusInfoIsPaused.Location = new Point(102, 217);
+        StatusInfoIsPaused.Name = "StatusInfoIsPaused";
+        StatusInfoIsPaused.Size = new Size(670, 35);
+        StatusInfoIsPaused.TabIndex = 13;
+        StatusInfoIsPaused.Text = "...";
+        StatusInfoIsPaused.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // stylableLabel16
+        // 
+        stylableLabel16.DisabledForeColor = Color.Empty;
+        stylableLabel16.Dock = DockStyle.Fill;
+        stylableLabel16.Location = new Point(4, 253);
+        stylableLabel16.Name = "stylableLabel16";
+        stylableLabel16.Size = new Size(91, 35);
+        stylableLabel16.TabIndex = 14;
+        stylableLabel16.Text = "Tech tier";
+        stylableLabel16.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // StatusInfoTechTier
+        // 
+        StatusInfoTechTier.DisabledForeColor = Color.Empty;
+        StatusInfoTechTier.Dock = DockStyle.Fill;
+        StatusInfoTechTier.Location = new Point(102, 253);
+        StatusInfoTechTier.Name = "StatusInfoTechTier";
+        StatusInfoTechTier.Size = new Size(670, 35);
+        StatusInfoTechTier.TabIndex = 15;
+        StatusInfoTechTier.Text = "...";
+        StatusInfoTechTier.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // stylableLabel19
+        // 
+        stylableLabel19.DisabledForeColor = Color.Empty;
+        stylableLabel19.Dock = DockStyle.Fill;
+        stylableLabel19.Location = new Point(4, 289);
+        stylableLabel19.Name = "stylableLabel19";
+        stylableLabel19.Size = new Size(91, 35);
+        stylableLabel19.TabIndex = 16;
+        stylableLabel19.Text = "Active schematic";
+        stylableLabel19.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // StatusInfoActiveSchematic
+        // 
+        StatusInfoActiveSchematic.DisabledForeColor = Color.Empty;
+        StatusInfoActiveSchematic.Dock = DockStyle.Fill;
+        StatusInfoActiveSchematic.Location = new Point(102, 289);
+        StatusInfoActiveSchematic.Name = "StatusInfoActiveSchematic";
+        StatusInfoActiveSchematic.Size = new Size(670, 35);
+        StatusInfoActiveSchematic.TabIndex = 17;
+        StatusInfoActiveSchematic.Text = "...";
+        StatusInfoActiveSchematic.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // stylableLabel22
+        // 
+        stylableLabel22.DisabledForeColor = Color.Empty;
+        stylableLabel22.Dock = DockStyle.Fill;
+        stylableLabel22.Location = new Point(4, 325);
+        stylableLabel22.Name = "stylableLabel22";
+        stylableLabel22.Size = new Size(91, 35);
+        stylableLabel22.TabIndex = 18;
+        stylableLabel22.Text = "Game phase";
+        stylableLabel22.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // StatusInfoGamePhase
+        // 
+        StatusInfoGamePhase.DisabledForeColor = Color.Empty;
+        StatusInfoGamePhase.Dock = DockStyle.Fill;
+        StatusInfoGamePhase.Location = new Point(102, 325);
+        StatusInfoGamePhase.Name = "StatusInfoGamePhase";
+        StatusInfoGamePhase.Size = new Size(670, 35);
+        StatusInfoGamePhase.TabIndex = 19;
+        StatusInfoGamePhase.Text = "...";
+        StatusInfoGamePhase.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // stylableLabel24
+        // 
+        stylableLabel24.DisabledForeColor = Color.Empty;
+        stylableLabel24.Dock = DockStyle.Fill;
+        stylableLabel24.Location = new Point(4, 361);
+        stylableLabel24.Name = "stylableLabel24";
+        stylableLabel24.Size = new Size(91, 45);
+        stylableLabel24.TabIndex = 20;
+        stylableLabel24.Text = "Auto load session name";
+        stylableLabel24.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // StatusInfoAutoLoadSessionName
+        // 
+        StatusInfoAutoLoadSessionName.DisabledForeColor = Color.Empty;
+        StatusInfoAutoLoadSessionName.Dock = DockStyle.Fill;
+        StatusInfoAutoLoadSessionName.Location = new Point(102, 361);
+        StatusInfoAutoLoadSessionName.Name = "StatusInfoAutoLoadSessionName";
+        StatusInfoAutoLoadSessionName.Size = new Size(670, 45);
+        StatusInfoAutoLoadSessionName.TabIndex = 21;
+        StatusInfoAutoLoadSessionName.Text = "...";
+        StatusInfoAutoLoadSessionName.TextAlign = ContentAlignment.MiddleLeft;
+        // 
         // MainScreen
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -780,4 +969,18 @@ partial class MainScreen
     private StylableLabel SettingsFolderSavesInfo;
     private StylableLabel stylableLabel18;
     private FolderBrowserDialog folderBrowserDialog1;
+    private StylableLabel StatusInfoAutoLoadSessionName;
+    private StylableLabel stylableLabel24;
+    private StylableLabel StatusInfoGamePhase;
+    private StylableLabel stylableLabel22;
+    private StylableLabel StatusInfoActiveSchematic;
+    private StylableLabel stylableLabel19;
+    private StylableLabel StatusInfoTechTier;
+    private StylableLabel stylableLabel16;
+    private StylableLabel StatusInfoIsPaused;
+    private StylableLabel stylableLabel9;
+    private StylableLabel StatusInfoTickRate;
+    private StylableLabel stylableLabel6;
+    private StylableLabel StatusInfoTotalGameDuration;
+    private StylableLabel stylableLabel1;
 }
