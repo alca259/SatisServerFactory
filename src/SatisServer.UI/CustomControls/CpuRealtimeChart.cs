@@ -1,6 +1,7 @@
-﻿using LiveChartsCore.SkiaSharpView.Painting.Effects;
-using LiveChartsCore.SkiaSharpView.Painting;
+﻿using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using LiveChartsCore.SkiaSharpView.WinForms;
 using SkiaSharp;
 
@@ -32,6 +33,7 @@ public partial class CpuRealtimeChart : UserControl
 
                     MinStep = 50,
                     ForceStepToMin = true,
+                    Labeler = (value) => $"{value:N2} %",
 
                     LabelsPaint = new SolidColorPaint(SKColors.Lime),
                     TextSize = 10,

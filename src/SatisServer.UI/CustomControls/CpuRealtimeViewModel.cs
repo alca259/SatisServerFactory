@@ -35,7 +35,7 @@ public partial class CpuRealtimeViewModel : ObservableObject
             SeparatorsPaint = new SolidColorPaint(SKColors.Red),
 
             LabelsPaint = new SolidColorPaint(SKColors.LightGray),
-            TextSize = 10,
+            TextSize = 10
         };
 
         XAxes = [_customAxis];
@@ -88,6 +88,8 @@ public partial class CpuRealtimeViewModel : ObservableObject
             {
                 var now = DateTime.UtcNow;
                 ServerControl.GetCpuPercentage(out var cpuUsage);
+
+                cpuUsage = Math.Round(cpuUsage, 2);
 
                 _values.Add(new DateTimePoint(now, cpuUsage));
                 _values.RemoveAll(r => r.DateTime < now.AddSeconds(-60));

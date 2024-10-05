@@ -129,6 +129,8 @@ public partial class MainScreen : Form
         ControlNoVisibleConsole.Checked = SatisConfig.Instance.NoVisibleConsole;
         ControlUseExperimental.Checked = SatisConfig.Instance.UseExperimental;
         ControlServerPort.Text = SatisConfig.Instance.ServerPort.ToString();
+        ControlServerIP.Text = SatisConfig.Instance.ServerIpAddress.ToString();
+        ControlServerPassAdmin.Text = SatisConfig.Instance.AdminPassword;
         SetFolders();
         TriggerButtons();
 
@@ -167,6 +169,7 @@ public partial class MainScreen : Form
         ControlUseExperimental.Enabled = !isRunning;
         ControlDisableEventsSeasonal.Enabled = !isRunning;
         ControlServerPort.Enabled = !isRunning;
+        ControlServerIP.Enabled = !isRunning;
     }
 
     private void SetFolders()

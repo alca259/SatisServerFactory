@@ -28,11 +28,17 @@ public partial class RamRealtimeChart : UserControl
                 new Axis
                 {
                     MinLimit = 0,
-                    MinStep = 1000,
+                    MinStep = 512,
                     ForceStepToMin = true,
 
                     LabelsPaint = new SolidColorPaint(SKColors.Lime),
                     TextSize = 10,
+                    Labeler = (value) =>
+                    {
+                        if (value < 1024) return $"{value:N2} Mb";
+                        value /= 1024;
+                        return $"{value:N2} Gb";
+                    },
 
                     SeparatorsPaint = new SolidColorPaint(SKColors.LightSlateGray)
                     {

@@ -52,7 +52,12 @@ public sealed class ServerStateResponse
     public string? GetGamePhase()
     {
         var gamePhase = GamePhases.FirstOrDefault(x => x.Key == ServerGameState.GamePhase);
-        return gamePhase is not null ? $"{gamePhase.Description} (Phase: {gamePhase.Number})" : ServerGameState.GamePhase;
+        if (gamePhase == null) return ServerGameState.GamePhase;
+
+        var nextGamePhase = GamePhases.FirstOrDefault(x => x.Number == gamePhase.Number + 1);
+        if (nextGamePhase == null) return $"{gamePhase.Description} (Phase: {gamePhase.Number})";
+
+        return $"{gamePhase.Description} (Phase: {gamePhase.Number}) - In progress: {nextGamePhase.Description} (Phase: {nextGamePhase.Number})";
     }
 
     /// <summary>Get the current active schematic</summary>

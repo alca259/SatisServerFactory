@@ -35,7 +35,7 @@ public partial class RamRealtimeViewModel : ObservableObject
             SeparatorsPaint = new SolidColorPaint(SKColors.Red),
 
             LabelsPaint = new SolidColorPaint(SKColors.LightGray),
-            TextSize = 10,
+            TextSize = 10
         };
 
         XAxes = [_customAxis];
@@ -88,6 +88,8 @@ public partial class RamRealtimeViewModel : ObservableObject
             {
                 var now = DateTime.UtcNow;
                 ServerControl.GetRamUsage(out var ramUsage);
+
+                ramUsage = Math.Round(ramUsage, 2);
 
                 _values.Add(new DateTimePoint(now, ramUsage));
                 _values.RemoveAll(r => r.DateTime < now.AddSeconds(-60));

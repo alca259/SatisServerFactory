@@ -75,6 +75,16 @@ partial class MainScreen
         LogComboFilter = new StylableComboBox();
         stylableLabel14 = new StylableLabel();
         tabPage4 = new TabPage();
+        stylableGroupBox1 = new StylableGroupBox();
+        ControlServerPassAdmin = new StylableTextBox();
+        stylableLabel7 = new StylableLabel();
+        ControlServerIP = new StylableTextBox();
+        stylableLabel2 = new StylableLabel();
+        ControlDisableEventsSeasonal = new StylableCheckBox();
+        ControlServerPort = new StylableTextBox();
+        stylableLabel3 = new StylableLabel();
+        ControlUseExperimental = new StylableCheckBox();
+        ControlNoVisibleConsole = new StylableCheckBox();
         groupBox2 = new GroupBox();
         panel5 = new Panel();
         SettingsFolderLogsButtonOpen = new StylableButton();
@@ -90,16 +100,6 @@ partial class MainScreen
         stylableLabel15 = new StylableLabel();
         SettingsFolderSSButtonSet = new StylableButton();
         folderBrowserDialog1 = new FolderBrowserDialog();
-        stylableGroupBox1 = new StylableGroupBox();
-        ControlDisableEventsSeasonal = new StylableCheckBox();
-        ControlServerPort = new StylableTextBox();
-        stylableLabel3 = new StylableLabel();
-        ControlUseExperimental = new StylableCheckBox();
-        ControlNoVisibleConsole = new StylableCheckBox();
-        ControlServerIP = new StylableTextBox();
-        stylableLabel2 = new StylableLabel();
-        ControlServerPassAdmin = new StylableTextBox();
-        stylableLabel7 = new StylableLabel();
         stylableTabControl1.SuspendLayout();
         tabPage1.SuspendLayout();
         groupBox1.SuspendLayout();
@@ -111,11 +111,11 @@ partial class MainScreen
         tableLayoutPanel2.SuspendLayout();
         tabPage3.SuspendLayout();
         tabPage4.SuspendLayout();
+        stylableGroupBox1.SuspendLayout();
         groupBox2.SuspendLayout();
         panel5.SuspendLayout();
         panel4.SuspendLayout();
         panel3.SuspendLayout();
-        stylableGroupBox1.SuspendLayout();
         SuspendLayout();
         // 
         // stylableTabControl1
@@ -331,7 +331,7 @@ partial class MainScreen
         tabPage2.Location = new Point(4, 25);
         tabPage2.Name = "tabPage2";
         tabPage2.Padding = new Padding(3);
-        tabPage2.Size = new Size(1101, 630);
+        tabPage2.Size = new Size(192, 71);
         tabPage2.TabIndex = 1;
         tabPage2.Text = "Stats";
         tabPage2.UseVisualStyleBackColor = true;
@@ -379,16 +379,16 @@ partial class MainScreen
         tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
         tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
         tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090908F));
-        tableLayoutPanel2.Size = new Size(1085, 407);
+        tableLayoutPanel2.Size = new Size(176, 407);
         tableLayoutPanel2.TabIndex = 1;
         // 
         // StatusInfoAutoLoadSessionName
         // 
         StatusInfoAutoLoadSessionName.DisabledForeColor = Color.Empty;
         StatusInfoAutoLoadSessionName.Dock = DockStyle.Fill;
-        StatusInfoAutoLoadSessionName.Location = new Point(167, 361);
+        StatusInfoAutoLoadSessionName.Location = new Point(30, 361);
         StatusInfoAutoLoadSessionName.Name = "StatusInfoAutoLoadSessionName";
-        StatusInfoAutoLoadSessionName.Size = new Size(914, 45);
+        StatusInfoAutoLoadSessionName.Size = new Size(142, 45);
         StatusInfoAutoLoadSessionName.TabIndex = 21;
         StatusInfoAutoLoadSessionName.Text = "...";
         StatusInfoAutoLoadSessionName.TextAlign = ContentAlignment.MiddleLeft;
@@ -399,7 +399,7 @@ partial class MainScreen
         stylableLabel24.Dock = DockStyle.Fill;
         stylableLabel24.Location = new Point(4, 361);
         stylableLabel24.Name = "stylableLabel24";
-        stylableLabel24.Size = new Size(156, 45);
+        stylableLabel24.Size = new Size(19, 45);
         stylableLabel24.TabIndex = 20;
         stylableLabel24.Text = "Auto load session name";
         stylableLabel24.TextAlign = ContentAlignment.MiddleCenter;
@@ -408,9 +408,9 @@ partial class MainScreen
         // 
         StatusInfoGamePhase.DisabledForeColor = Color.Empty;
         StatusInfoGamePhase.Dock = DockStyle.Fill;
-        StatusInfoGamePhase.Location = new Point(167, 325);
+        StatusInfoGamePhase.Location = new Point(30, 325);
         StatusInfoGamePhase.Name = "StatusInfoGamePhase";
-        StatusInfoGamePhase.Size = new Size(914, 35);
+        StatusInfoGamePhase.Size = new Size(142, 35);
         StatusInfoGamePhase.TabIndex = 19;
         StatusInfoGamePhase.Text = "...";
         StatusInfoGamePhase.TextAlign = ContentAlignment.MiddleLeft;
@@ -421,7 +421,7 @@ partial class MainScreen
         stylableLabel22.Dock = DockStyle.Fill;
         stylableLabel22.Location = new Point(4, 325);
         stylableLabel22.Name = "stylableLabel22";
-        stylableLabel22.Size = new Size(156, 35);
+        stylableLabel22.Size = new Size(19, 35);
         stylableLabel22.TabIndex = 18;
         stylableLabel22.Text = "Game phase";
         stylableLabel22.TextAlign = ContentAlignment.MiddleCenter;
@@ -430,9 +430,9 @@ partial class MainScreen
         // 
         StatusInfoActiveSchematic.DisabledForeColor = Color.Empty;
         StatusInfoActiveSchematic.Dock = DockStyle.Fill;
-        StatusInfoActiveSchematic.Location = new Point(167, 289);
+        StatusInfoActiveSchematic.Location = new Point(30, 289);
         StatusInfoActiveSchematic.Name = "StatusInfoActiveSchematic";
-        StatusInfoActiveSchematic.Size = new Size(914, 35);
+        StatusInfoActiveSchematic.Size = new Size(142, 35);
         StatusInfoActiveSchematic.TabIndex = 17;
         StatusInfoActiveSchematic.Text = "...";
         StatusInfoActiveSchematic.TextAlign = ContentAlignment.MiddleLeft;
@@ -443,7 +443,7 @@ partial class MainScreen
         stylableLabel19.Dock = DockStyle.Fill;
         stylableLabel19.Location = new Point(4, 289);
         stylableLabel19.Name = "stylableLabel19";
-        stylableLabel19.Size = new Size(156, 35);
+        stylableLabel19.Size = new Size(19, 35);
         stylableLabel19.TabIndex = 16;
         stylableLabel19.Text = "Active schematic";
         stylableLabel19.TextAlign = ContentAlignment.MiddleCenter;
@@ -452,9 +452,9 @@ partial class MainScreen
         // 
         StatusInfoTechTier.DisabledForeColor = Color.Empty;
         StatusInfoTechTier.Dock = DockStyle.Fill;
-        StatusInfoTechTier.Location = new Point(167, 253);
+        StatusInfoTechTier.Location = new Point(30, 253);
         StatusInfoTechTier.Name = "StatusInfoTechTier";
-        StatusInfoTechTier.Size = new Size(914, 35);
+        StatusInfoTechTier.Size = new Size(142, 35);
         StatusInfoTechTier.TabIndex = 15;
         StatusInfoTechTier.Text = "...";
         StatusInfoTechTier.TextAlign = ContentAlignment.MiddleLeft;
@@ -465,7 +465,7 @@ partial class MainScreen
         stylableLabel16.Dock = DockStyle.Fill;
         stylableLabel16.Location = new Point(4, 253);
         stylableLabel16.Name = "stylableLabel16";
-        stylableLabel16.Size = new Size(156, 35);
+        stylableLabel16.Size = new Size(19, 35);
         stylableLabel16.TabIndex = 14;
         stylableLabel16.Text = "Tech tier";
         stylableLabel16.TextAlign = ContentAlignment.MiddleCenter;
@@ -474,9 +474,9 @@ partial class MainScreen
         // 
         StatusInfoIsPaused.DisabledForeColor = Color.Empty;
         StatusInfoIsPaused.Dock = DockStyle.Fill;
-        StatusInfoIsPaused.Location = new Point(167, 217);
+        StatusInfoIsPaused.Location = new Point(30, 217);
         StatusInfoIsPaused.Name = "StatusInfoIsPaused";
-        StatusInfoIsPaused.Size = new Size(914, 35);
+        StatusInfoIsPaused.Size = new Size(142, 35);
         StatusInfoIsPaused.TabIndex = 13;
         StatusInfoIsPaused.Text = "...";
         StatusInfoIsPaused.TextAlign = ContentAlignment.MiddleLeft;
@@ -487,7 +487,7 @@ partial class MainScreen
         stylableLabel9.Dock = DockStyle.Fill;
         stylableLabel9.Location = new Point(4, 217);
         stylableLabel9.Name = "stylableLabel9";
-        stylableLabel9.Size = new Size(156, 35);
+        stylableLabel9.Size = new Size(19, 35);
         stylableLabel9.TabIndex = 12;
         stylableLabel9.Text = "Is paused?";
         stylableLabel9.TextAlign = ContentAlignment.MiddleCenter;
@@ -496,9 +496,9 @@ partial class MainScreen
         // 
         StatusInfoTickRate.DisabledForeColor = Color.Empty;
         StatusInfoTickRate.Dock = DockStyle.Fill;
-        StatusInfoTickRate.Location = new Point(167, 181);
+        StatusInfoTickRate.Location = new Point(30, 181);
         StatusInfoTickRate.Name = "StatusInfoTickRate";
-        StatusInfoTickRate.Size = new Size(914, 35);
+        StatusInfoTickRate.Size = new Size(142, 35);
         StatusInfoTickRate.TabIndex = 11;
         StatusInfoTickRate.Text = "...";
         StatusInfoTickRate.TextAlign = ContentAlignment.MiddleLeft;
@@ -509,7 +509,7 @@ partial class MainScreen
         stylableLabel6.Dock = DockStyle.Fill;
         stylableLabel6.Location = new Point(4, 181);
         stylableLabel6.Name = "stylableLabel6";
-        stylableLabel6.Size = new Size(156, 35);
+        stylableLabel6.Size = new Size(19, 35);
         stylableLabel6.TabIndex = 10;
         stylableLabel6.Text = "Tick rate";
         stylableLabel6.TextAlign = ContentAlignment.MiddleCenter;
@@ -518,9 +518,9 @@ partial class MainScreen
         // 
         StatusInfoTotalGameDuration.DisabledForeColor = Color.Empty;
         StatusInfoTotalGameDuration.Dock = DockStyle.Fill;
-        StatusInfoTotalGameDuration.Location = new Point(167, 145);
+        StatusInfoTotalGameDuration.Location = new Point(30, 145);
         StatusInfoTotalGameDuration.Name = "StatusInfoTotalGameDuration";
-        StatusInfoTotalGameDuration.Size = new Size(914, 35);
+        StatusInfoTotalGameDuration.Size = new Size(142, 35);
         StatusInfoTotalGameDuration.TabIndex = 9;
         StatusInfoTotalGameDuration.Text = "...";
         StatusInfoTotalGameDuration.TextAlign = ContentAlignment.MiddleLeft;
@@ -531,7 +531,7 @@ partial class MainScreen
         stylableLabel1.Dock = DockStyle.Fill;
         stylableLabel1.Location = new Point(4, 145);
         stylableLabel1.Name = "stylableLabel1";
-        stylableLabel1.Size = new Size(156, 35);
+        stylableLabel1.Size = new Size(19, 35);
         stylableLabel1.TabIndex = 8;
         stylableLabel1.Text = "Total session time";
         stylableLabel1.TextAlign = ContentAlignment.MiddleCenter;
@@ -540,9 +540,9 @@ partial class MainScreen
         // 
         StatusInfoUptime.DisabledForeColor = Color.Empty;
         StatusInfoUptime.Dock = DockStyle.Fill;
-        StatusInfoUptime.Location = new Point(167, 109);
+        StatusInfoUptime.Location = new Point(30, 109);
         StatusInfoUptime.Name = "StatusInfoUptime";
-        StatusInfoUptime.Size = new Size(914, 35);
+        StatusInfoUptime.Size = new Size(142, 35);
         StatusInfoUptime.TabIndex = 7;
         StatusInfoUptime.Text = "...";
         StatusInfoUptime.TextAlign = ContentAlignment.MiddleLeft;
@@ -553,7 +553,7 @@ partial class MainScreen
         stylableLabel10.Dock = DockStyle.Fill;
         stylableLabel10.Location = new Point(4, 109);
         stylableLabel10.Name = "stylableLabel10";
-        stylableLabel10.Size = new Size(156, 35);
+        stylableLabel10.Size = new Size(19, 35);
         stylableLabel10.TabIndex = 6;
         stylableLabel10.Text = "Uptime";
         stylableLabel10.TextAlign = ContentAlignment.MiddleCenter;
@@ -562,9 +562,9 @@ partial class MainScreen
         // 
         StatusInfoLastWorldSave.DisabledForeColor = Color.Empty;
         StatusInfoLastWorldSave.Dock = DockStyle.Fill;
-        StatusInfoLastWorldSave.Location = new Point(167, 73);
+        StatusInfoLastWorldSave.Location = new Point(30, 73);
         StatusInfoLastWorldSave.Name = "StatusInfoLastWorldSave";
-        StatusInfoLastWorldSave.Size = new Size(914, 35);
+        StatusInfoLastWorldSave.Size = new Size(142, 35);
         StatusInfoLastWorldSave.TabIndex = 5;
         StatusInfoLastWorldSave.Text = "...";
         StatusInfoLastWorldSave.TextAlign = ContentAlignment.MiddleLeft;
@@ -575,7 +575,7 @@ partial class MainScreen
         stylableLabel8.Dock = DockStyle.Fill;
         stylableLabel8.Location = new Point(4, 73);
         stylableLabel8.Name = "stylableLabel8";
-        stylableLabel8.Size = new Size(156, 35);
+        stylableLabel8.Size = new Size(19, 35);
         stylableLabel8.TabIndex = 4;
         stylableLabel8.Text = "Last world save";
         stylableLabel8.TextAlign = ContentAlignment.MiddleCenter;
@@ -584,9 +584,9 @@ partial class MainScreen
         // 
         StatusInfoPlayers.DisabledForeColor = Color.Empty;
         StatusInfoPlayers.Dock = DockStyle.Fill;
-        StatusInfoPlayers.Location = new Point(167, 37);
+        StatusInfoPlayers.Location = new Point(30, 37);
         StatusInfoPlayers.Name = "StatusInfoPlayers";
-        StatusInfoPlayers.Size = new Size(914, 35);
+        StatusInfoPlayers.Size = new Size(142, 35);
         StatusInfoPlayers.TabIndex = 3;
         StatusInfoPlayers.Text = "...";
         StatusInfoPlayers.TextAlign = ContentAlignment.MiddleLeft;
@@ -595,9 +595,9 @@ partial class MainScreen
         // 
         StatusInfoCurrent.DisabledForeColor = Color.Empty;
         StatusInfoCurrent.Dock = DockStyle.Fill;
-        StatusInfoCurrent.Location = new Point(167, 1);
+        StatusInfoCurrent.Location = new Point(30, 1);
         StatusInfoCurrent.Name = "StatusInfoCurrent";
-        StatusInfoCurrent.Size = new Size(914, 35);
+        StatusInfoCurrent.Size = new Size(142, 35);
         StatusInfoCurrent.TabIndex = 2;
         StatusInfoCurrent.Text = "...";
         StatusInfoCurrent.TextAlign = ContentAlignment.MiddleLeft;
@@ -608,7 +608,7 @@ partial class MainScreen
         stylableLabel4.Dock = DockStyle.Fill;
         stylableLabel4.Location = new Point(4, 1);
         stylableLabel4.Name = "stylableLabel4";
-        stylableLabel4.Size = new Size(156, 35);
+        stylableLabel4.Size = new Size(19, 35);
         stylableLabel4.TabIndex = 0;
         stylableLabel4.Text = "Status";
         stylableLabel4.TextAlign = ContentAlignment.MiddleCenter;
@@ -619,7 +619,7 @@ partial class MainScreen
         stylableLabel5.Dock = DockStyle.Fill;
         stylableLabel5.Location = new Point(4, 37);
         stylableLabel5.Name = "stylableLabel5";
-        stylableLabel5.Size = new Size(156, 35);
+        stylableLabel5.Size = new Size(19, 35);
         stylableLabel5.TabIndex = 1;
         stylableLabel5.Text = "Players";
         stylableLabel5.TextAlign = ContentAlignment.MiddleCenter;
@@ -632,7 +632,7 @@ partial class MainScreen
         tabPage3.Location = new Point(4, 25);
         tabPage3.Name = "tabPage3";
         tabPage3.Padding = new Padding(3);
-        tabPage3.Size = new Size(1101, 630);
+        tabPage3.Size = new Size(192, 71);
         tabPage3.TabIndex = 2;
         tabPage3.Text = "Log";
         tabPage3.UseVisualStyleBackColor = true;
@@ -650,7 +650,7 @@ partial class MainScreen
         LogInfoShow.PlaceholderForeColor = Color.Gray;
         LogInfoShow.ReadOnly = true;
         LogInfoShow.ScrollBars = ScrollBars.Both;
-        LogInfoShow.Size = new Size(1079, 576);
+        LogInfoShow.Size = new Size(170, 17);
         LogInfoShow.TabIndex = 2;
         LogInfoShow.TabStop = false;
         // 
@@ -688,6 +688,134 @@ partial class MainScreen
         tabPage4.TabIndex = 3;
         tabPage4.Text = "Settings";
         tabPage4.UseVisualStyleBackColor = true;
+        // 
+        // stylableGroupBox1
+        // 
+        stylableGroupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        stylableGroupBox1.Controls.Add(ControlServerPassAdmin);
+        stylableGroupBox1.Controls.Add(stylableLabel7);
+        stylableGroupBox1.Controls.Add(ControlServerIP);
+        stylableGroupBox1.Controls.Add(stylableLabel2);
+        stylableGroupBox1.Controls.Add(ControlDisableEventsSeasonal);
+        stylableGroupBox1.Controls.Add(ControlServerPort);
+        stylableGroupBox1.Controls.Add(stylableLabel3);
+        stylableGroupBox1.Controls.Add(ControlUseExperimental);
+        stylableGroupBox1.Controls.Add(ControlNoVisibleConsole);
+        stylableGroupBox1.DisabledForeColor = SystemColors.GrayText;
+        stylableGroupBox1.EnabledForeColor = SystemColors.ControlText;
+        stylableGroupBox1.Location = new Point(6, 170);
+        stylableGroupBox1.Name = "stylableGroupBox1";
+        stylableGroupBox1.Size = new Size(1087, 126);
+        stylableGroupBox1.TabIndex = 1;
+        stylableGroupBox1.TabStop = false;
+        stylableGroupBox1.Text = "Options";
+        // 
+        // ControlServerPassAdmin
+        // 
+        ControlServerPassAdmin.BorderColor = Color.Blue;
+        ControlServerPassAdmin.BorderStyle = BorderStyle.FixedSingle;
+        ControlServerPassAdmin.DelayedTextChangedTimeout = 900;
+        ControlServerPassAdmin.IsDelayActive = true;
+        ControlServerPassAdmin.Location = new Point(332, 82);
+        ControlServerPassAdmin.MaxLength = 100;
+        ControlServerPassAdmin.Name = "ControlServerPassAdmin";
+        ControlServerPassAdmin.PasswordChar = '*';
+        ControlServerPassAdmin.PlaceholderForeColor = Color.Gray;
+        ControlServerPassAdmin.PlaceholderText = "For API access";
+        ControlServerPassAdmin.Size = new Size(125, 23);
+        ControlServerPassAdmin.TabIndex = 8;
+        // 
+        // stylableLabel7
+        // 
+        stylableLabel7.AutoSize = true;
+        stylableLabel7.DisabledForeColor = Color.Empty;
+        stylableLabel7.Location = new Point(229, 84);
+        stylableLabel7.Name = "stylableLabel7";
+        stylableLabel7.Size = new Size(96, 15);
+        stylableLabel7.TabIndex = 7;
+        stylableLabel7.Text = "Admin password";
+        // 
+        // ControlServerIP
+        // 
+        ControlServerIP.BorderColor = Color.Blue;
+        ControlServerIP.BorderStyle = BorderStyle.FixedSingle;
+        ControlServerIP.DelayedTextChangedTimeout = 900;
+        ControlServerIP.IsDelayActive = true;
+        ControlServerIP.Location = new Point(332, 24);
+        ControlServerIP.MaxLength = 100;
+        ControlServerIP.Name = "ControlServerIP";
+        ControlServerIP.PlaceholderForeColor = Color.Gray;
+        ControlServerIP.PlaceholderText = "127.0.0.1";
+        ControlServerIP.Size = new Size(125, 23);
+        ControlServerIP.TabIndex = 6;
+        ControlServerIP.Text = "127.0.0.1";
+        // 
+        // stylableLabel2
+        // 
+        stylableLabel2.AutoSize = true;
+        stylableLabel2.DisabledForeColor = Color.Empty;
+        stylableLabel2.Location = new Point(229, 26);
+        stylableLabel2.Name = "stylableLabel2";
+        stylableLabel2.Size = new Size(97, 15);
+        stylableLabel2.TabIndex = 5;
+        stylableLabel2.Text = "Server IP Address";
+        // 
+        // ControlDisableEventsSeasonal
+        // 
+        ControlDisableEventsSeasonal.DisabledForeColor = Color.Empty;
+        ControlDisableEventsSeasonal.Location = new Point(6, 82);
+        ControlDisableEventsSeasonal.Name = "ControlDisableEventsSeasonal";
+        ControlDisableEventsSeasonal.Size = new Size(176, 24);
+        ControlDisableEventsSeasonal.TabIndex = 4;
+        ControlDisableEventsSeasonal.Text = "Disable seasonal events";
+        ControlDisableEventsSeasonal.UseVisualStyleBackColor = true;
+        // 
+        // ControlServerPort
+        // 
+        ControlServerPort.BorderColor = Color.Blue;
+        ControlServerPort.BorderStyle = BorderStyle.FixedSingle;
+        ControlServerPort.DelayedTextChangedTimeout = 900;
+        ControlServerPort.IsDelayActive = true;
+        ControlServerPort.Location = new Point(332, 53);
+        ControlServerPort.MaxLength = 5;
+        ControlServerPort.Name = "ControlServerPort";
+        ControlServerPort.PlaceholderForeColor = Color.Gray;
+        ControlServerPort.PlaceholderText = "7777";
+        ControlServerPort.Size = new Size(125, 23);
+        ControlServerPort.TabIndex = 3;
+        ControlServerPort.Text = "7777";
+        // 
+        // stylableLabel3
+        // 
+        stylableLabel3.AutoSize = true;
+        stylableLabel3.DisabledForeColor = Color.Empty;
+        stylableLabel3.Location = new Point(229, 55);
+        stylableLabel3.Name = "stylableLabel3";
+        stylableLabel3.Size = new Size(64, 15);
+        stylableLabel3.TabIndex = 2;
+        stylableLabel3.Text = "Server port";
+        // 
+        // ControlUseExperimental
+        // 
+        ControlUseExperimental.DisabledForeColor = Color.Empty;
+        ControlUseExperimental.Location = new Point(6, 52);
+        ControlUseExperimental.Name = "ControlUseExperimental";
+        ControlUseExperimental.Size = new Size(176, 24);
+        ControlUseExperimental.TabIndex = 1;
+        ControlUseExperimental.Text = "Use experimental version";
+        ControlUseExperimental.UseVisualStyleBackColor = true;
+        // 
+        // ControlNoVisibleConsole
+        // 
+        ControlNoVisibleConsole.Checked = true;
+        ControlNoVisibleConsole.CheckState = CheckState.Checked;
+        ControlNoVisibleConsole.DisabledForeColor = Color.Empty;
+        ControlNoVisibleConsole.Location = new Point(6, 22);
+        ControlNoVisibleConsole.Name = "ControlNoVisibleConsole";
+        ControlNoVisibleConsole.Size = new Size(176, 24);
+        ControlNoVisibleConsole.TabIndex = 0;
+        ControlNoVisibleConsole.Text = "No visible console";
+        ControlNoVisibleConsole.UseVisualStyleBackColor = true;
         // 
         // groupBox2
         // 
@@ -864,134 +992,6 @@ partial class MainScreen
         folderBrowserDialog1.ShowNewFolderButton = false;
         folderBrowserDialog1.UseDescriptionForTitle = true;
         // 
-        // stylableGroupBox1
-        // 
-        stylableGroupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        stylableGroupBox1.Controls.Add(ControlServerPassAdmin);
-        stylableGroupBox1.Controls.Add(stylableLabel7);
-        stylableGroupBox1.Controls.Add(ControlServerIP);
-        stylableGroupBox1.Controls.Add(stylableLabel2);
-        stylableGroupBox1.Controls.Add(ControlDisableEventsSeasonal);
-        stylableGroupBox1.Controls.Add(ControlServerPort);
-        stylableGroupBox1.Controls.Add(stylableLabel3);
-        stylableGroupBox1.Controls.Add(ControlUseExperimental);
-        stylableGroupBox1.Controls.Add(ControlNoVisibleConsole);
-        stylableGroupBox1.DisabledForeColor = SystemColors.GrayText;
-        stylableGroupBox1.EnabledForeColor = SystemColors.ControlText;
-        stylableGroupBox1.Location = new Point(6, 170);
-        stylableGroupBox1.Name = "stylableGroupBox1";
-        stylableGroupBox1.Size = new Size(1087, 126);
-        stylableGroupBox1.TabIndex = 1;
-        stylableGroupBox1.TabStop = false;
-        stylableGroupBox1.Text = "Options";
-        // 
-        // ControlDisableEventsSeasonal
-        // 
-        ControlDisableEventsSeasonal.DisabledForeColor = Color.Empty;
-        ControlDisableEventsSeasonal.Location = new Point(6, 82);
-        ControlDisableEventsSeasonal.Name = "ControlDisableEventsSeasonal";
-        ControlDisableEventsSeasonal.Size = new Size(176, 24);
-        ControlDisableEventsSeasonal.TabIndex = 4;
-        ControlDisableEventsSeasonal.Text = "Disable seasonal events";
-        ControlDisableEventsSeasonal.UseVisualStyleBackColor = true;
-        // 
-        // ControlServerPort
-        // 
-        ControlServerPort.BorderColor = Color.Blue;
-        ControlServerPort.BorderStyle = BorderStyle.FixedSingle;
-        ControlServerPort.DelayedTextChangedTimeout = 900;
-        ControlServerPort.IsDelayActive = true;
-        ControlServerPort.Location = new Point(332, 53);
-        ControlServerPort.MaxLength = 5;
-        ControlServerPort.Name = "ControlServerPort";
-        ControlServerPort.PlaceholderForeColor = Color.Gray;
-        ControlServerPort.PlaceholderText = "7777";
-        ControlServerPort.Size = new Size(125, 23);
-        ControlServerPort.TabIndex = 3;
-        ControlServerPort.Text = "7777";
-        // 
-        // stylableLabel3
-        // 
-        stylableLabel3.AutoSize = true;
-        stylableLabel3.DisabledForeColor = Color.Empty;
-        stylableLabel3.Location = new Point(229, 55);
-        stylableLabel3.Name = "stylableLabel3";
-        stylableLabel3.Size = new Size(64, 15);
-        stylableLabel3.TabIndex = 2;
-        stylableLabel3.Text = "Server port";
-        // 
-        // ControlUseExperimental
-        // 
-        ControlUseExperimental.DisabledForeColor = Color.Empty;
-        ControlUseExperimental.Location = new Point(6, 52);
-        ControlUseExperimental.Name = "ControlUseExperimental";
-        ControlUseExperimental.Size = new Size(176, 24);
-        ControlUseExperimental.TabIndex = 1;
-        ControlUseExperimental.Text = "Use experimental version";
-        ControlUseExperimental.UseVisualStyleBackColor = true;
-        // 
-        // ControlNoVisibleConsole
-        // 
-        ControlNoVisibleConsole.Checked = true;
-        ControlNoVisibleConsole.CheckState = CheckState.Checked;
-        ControlNoVisibleConsole.DisabledForeColor = Color.Empty;
-        ControlNoVisibleConsole.Location = new Point(6, 22);
-        ControlNoVisibleConsole.Name = "ControlNoVisibleConsole";
-        ControlNoVisibleConsole.Size = new Size(176, 24);
-        ControlNoVisibleConsole.TabIndex = 0;
-        ControlNoVisibleConsole.Text = "No visible console";
-        ControlNoVisibleConsole.UseVisualStyleBackColor = true;
-        // 
-        // ControlServerIP
-        // 
-        ControlServerIP.BorderColor = Color.Blue;
-        ControlServerIP.BorderStyle = BorderStyle.FixedSingle;
-        ControlServerIP.DelayedTextChangedTimeout = 900;
-        ControlServerIP.IsDelayActive = true;
-        ControlServerIP.Location = new Point(332, 24);
-        ControlServerIP.MaxLength = 5;
-        ControlServerIP.Name = "ControlServerIP";
-        ControlServerIP.PlaceholderForeColor = Color.Gray;
-        ControlServerIP.PlaceholderText = "127.0.0.1";
-        ControlServerIP.Size = new Size(125, 23);
-        ControlServerIP.TabIndex = 6;
-        ControlServerIP.Text = "127.0.0.1";
-        // 
-        // stylableLabel2
-        // 
-        stylableLabel2.AutoSize = true;
-        stylableLabel2.DisabledForeColor = Color.Empty;
-        stylableLabel2.Location = new Point(229, 26);
-        stylableLabel2.Name = "stylableLabel2";
-        stylableLabel2.Size = new Size(97, 15);
-        stylableLabel2.TabIndex = 5;
-        stylableLabel2.Text = "Server IP Address";
-        // 
-        // ControlServerPassAdmin
-        // 
-        ControlServerPassAdmin.BorderColor = Color.Blue;
-        ControlServerPassAdmin.BorderStyle = BorderStyle.FixedSingle;
-        ControlServerPassAdmin.DelayedTextChangedTimeout = 900;
-        ControlServerPassAdmin.IsDelayActive = true;
-        ControlServerPassAdmin.Location = new Point(332, 82);
-        ControlServerPassAdmin.MaxLength = 5;
-        ControlServerPassAdmin.Name = "ControlServerPassAdmin";
-        ControlServerPassAdmin.PasswordChar = '*';
-        ControlServerPassAdmin.PlaceholderForeColor = Color.Gray;
-        ControlServerPassAdmin.PlaceholderText = "For API access";
-        ControlServerPassAdmin.Size = new Size(125, 23);
-        ControlServerPassAdmin.TabIndex = 8;
-        // 
-        // stylableLabel7
-        // 
-        stylableLabel7.AutoSize = true;
-        stylableLabel7.DisabledForeColor = Color.Empty;
-        stylableLabel7.Location = new Point(229, 84);
-        stylableLabel7.Name = "stylableLabel7";
-        stylableLabel7.Size = new Size(96, 15);
-        stylableLabel7.TabIndex = 7;
-        stylableLabel7.Text = "Admin password";
-        // 
         // MainScreen
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1016,6 +1016,8 @@ partial class MainScreen
         tabPage3.ResumeLayout(false);
         tabPage3.PerformLayout();
         tabPage4.ResumeLayout(false);
+        stylableGroupBox1.ResumeLayout(false);
+        stylableGroupBox1.PerformLayout();
         groupBox2.ResumeLayout(false);
         panel5.ResumeLayout(false);
         panel5.PerformLayout();
@@ -1023,8 +1025,6 @@ partial class MainScreen
         panel4.PerformLayout();
         panel3.ResumeLayout(false);
         panel3.PerformLayout();
-        stylableGroupBox1.ResumeLayout(false);
-        stylableGroupBox1.PerformLayout();
         ResumeLayout(false);
     }
 
