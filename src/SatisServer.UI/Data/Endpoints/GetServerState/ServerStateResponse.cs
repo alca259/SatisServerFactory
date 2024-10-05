@@ -1,4 +1,6 @@
-﻿namespace SatisServer.UI.Data.Endpoints.GetServerState;
+﻿using SatisServer.UI.Data.i18n;
+
+namespace SatisServer.UI.Data.Endpoints.GetServerState;
 
 /// <summary>Response object for the GetServerState endpoint</summary>
 public sealed class ServerStateResponse
@@ -33,15 +35,31 @@ public sealed class ServerStateResponse
         return $"{ServerGameState.NumConnectedPlayers} / {ServerGameState.PlayerLimit}";
     }
 
+    /// <summary>Get the total duration of this save</summary>
     public string GetSessionDuration()
     {
         var time = TimeSpan.FromSeconds(ServerGameState.TotalGameDuration);
         return $"{time.Days} days, {time.Hours} hours, {time.Minutes} minutes, {time.Seconds} seconds";
     }
 
+    /// <summary>Get the current average tick rate</summary>
     public string GetTickRate()
     {
         return $"{(int)(1000 / ServerGameState.AverageTickRate)} ms";
+    }
+
+    /// <summary>Get the current game phase</summary>
+    public string? GetGamePhase()
+    {
+        var gamePhase = GamePhases.FirstOrDefault(x => x.Key == ServerGameState.GamePhase);
+        return gamePhase is not null ? $"{gamePhase.Description} (Phase: {gamePhase.Number})" : ServerGameState.GamePhase;
+    }
+
+    /// <summary>Get the current active schematic</summary>
+    public string? GetActiveSchematic()
+    {
+        var activeSchematic = I18nResources.GetAllSchematics().Find(x => ServerGameState.ActiveSchematic.ContainsIgnoreCase(x.FullName));
+        return activeSchematic is not null ? $"{activeSchematic.Description} (Tier {activeSchematic.TechTier})" : ServerGameState.ActiveSchematic;
     }
 
     /// <summary>Represents the current state of the Dedicated Server</summary>
@@ -70,4 +88,23 @@ public sealed class ServerStateResponse
         /// <summary>Name of the session that will be loaded when the server starts automatically</summary>
         public string? AutoLoadSessionName { get; set; }
     }
+
+    #region Data
+    private sealed record GamePhaseDescriptions(string Key, int Number, string Description);
+
+    private static IReadOnlyList<GamePhaseDescriptions> GamePhases =>
+    [
+        new("/Script/FactoryGame.FGGamePhase'/Game/FactoryGame/GamePhases/GP_Project_Assembly_Phase_0.GP_Project_Assembly_Phase_0'", 0, "Build HUB"),
+        new("/Script/FactoryGame.FGGamePhase'/Game/FactoryGame/GamePhases/GP_Project_Assembly_Phase_1.GP_Project_Assembly_Phase_1'", 1, "Distribution Platform"),
+        new("/Script/FactoryGame.FGGamePhase'/Game/FactoryGame/GamePhases/GP_Project_Assembly_Phase_2.GP_Project_Assembly_Phase_2'", 2, "Construction Dock"),
+        new("/Script/FactoryGame.FGGamePhase'/Game/FactoryGame/GamePhases/GP_Project_Assembly_Phase_3.GP_Project_Assembly_Phase_3'", 3, "Main Body"),
+        new("/Script/FactoryGame.FGGamePhase'/Game/FactoryGame/GamePhases/GP_Project_Assembly_Phase_4.GP_Project_Assembly_Phase_4'", 4, "Propulsion Systems"),
+        new("/Script/FactoryGame.FGGamePhase'/Game/FactoryGame/GamePhases/GP_Project_Assembly_Phase_5.GP_Project_Assembly_Phase_5'", 5, "Assembly"),
+        new("/Script/FactoryGame.FGGamePhase'/Game/FactoryGame/GamePhases/GP_Project_Assembly_Phase_6.GP_Project_Assembly_Phase_6'", 6, "Launch"),
+        new("/Script/FactoryGame.FGGamePhase'/Game/FactoryGame/GamePhases/GP_Project_Assembly_Phase_7.GP_Project_Assembly_Phase_7'", 7, "Completed")
+    ];
+
+    private static CommunityResourceI18N? _communityResourceI18N;
+    private static CommunityResourceI18N I18nResources => _communityResourceI18N ??= CommunityResourceI18N.FromLanguage("en-US");
+    #endregion
 }

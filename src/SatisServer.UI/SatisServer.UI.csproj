@@ -34,4 +34,10 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\i18n\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

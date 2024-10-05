@@ -46,6 +46,8 @@ public partial class MainScreen : Form
         ControlUseExperimental.CheckedChanged += (sender, e) => SetConfig();
         ControlDisableEventsSeasonal.CheckedChanged += (sender, e) => SetConfig();
         ControlServerPort.TextChanged += (sender, e) => SetConfig();
+        ControlServerIP.TextChanged += (sender, e) => SetConfig();
+        ControlServerPassAdmin.TextChanged += (sender, e) => SetConfig();
         LogComboFilter.SelectedIndexChanged += (sender, e) =>
         {
             if (string.IsNullOrEmpty(SatisConfig.Instance.LogDirectory)) return;
@@ -227,9 +229,9 @@ public partial class MainScreen : Form
                 StatusInfoPlayers.Text = state.GetPlayerCount();
                 StatusInfoUptime.Text = ServerControl.GetServerOnlineDuration();
 
-                StatusInfoActiveSchematic.Text = state.ServerGameState.ActiveSchematic;
+                StatusInfoActiveSchematic.Text = state.GetActiveSchematic();
                 StatusInfoAutoLoadSessionName.Text = state.ServerGameState.AutoLoadSessionName;
-                StatusInfoGamePhase.Text = state.ServerGameState.GamePhase;
+                StatusInfoGamePhase.Text = state.GetGamePhase();
                 StatusInfoIsPaused.Text = state.ServerGameState.IsGamePaused ? "Yes" : "No";
                 StatusInfoTechTier.Text = state.ServerGameState.TechTier.ToString();
                 StatusInfoTickRate.Text = state.GetTickRate();
@@ -341,6 +343,8 @@ public partial class MainScreen : Form
         SatisConfig.Instance.NoVisibleConsole = ControlNoVisibleConsole.Checked;
         SatisConfig.Instance.UseExperimental = ControlUseExperimental.Checked;
         SatisConfig.Instance.ServerPort = ControlServerPort.Text.ConvertToInt(7777);
+        SatisConfig.Instance.ServerIpAddress = ControlServerIP.Text.ConvertToIpAddress("127.0.0.1");
+        SatisConfig.Instance.AdminPassword = ControlServerPassAdmin.Text;
 
         string satisConfig = JsonConvert.SerializeObject(SatisConfig.Instance, Formatting.Indented);
         string currentPath = AppDomain.CurrentDomain.BaseDirectory;
@@ -353,12 +357,15 @@ public partial class MainScreen : Form
 
         string currentPath = AppDomain.CurrentDomain.BaseDirectory;
         string satisConfigPath = Path.Combine(currentPath, "satisconfig.json");
+        string satisConfig;
         if (!File.Exists(satisConfigPath))
         {
+            satisConfig = JsonConvert.SerializeObject(instanceConfig, Formatting.Indented);
+            File.WriteAllText(satisConfigPath, satisConfig);
             return;
         }
 
-        string satisConfig = File.ReadAllText(satisConfigPath);
+        satisConfig = File.ReadAllText(satisConfigPath);
         SatisConfig? config = JsonConvert.DeserializeObject<SatisConfig>(satisConfig);
         instanceConfig.CopyValues(config);
     }
